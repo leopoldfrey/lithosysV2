@@ -537,5 +537,243 @@
     "date": 1600713291279,
     "content": "oooo",
     "color": "#606060"
+  },
+  {
+    "name": "human",
+    "type": "human",
+    "date": 1600714000939,
+    "content": "cool",
+    "color": "#8c053d"
+  },
+  {
+    "name": "zdoij",
+    "type": "human",
+    "date": 1600714007346,
+    "content": "supze",
+    "color": "#44078e"
+  },
+  {
+    "name": "human",
+    "type": "human",
+    "date": 1600714026905,
+    "content": "pourquoi tu dis ça ?",
+    "color": "#8c053d"
+  },
+  {
+    "name": "zdoij",
+    "type": "human",
+    "date": 1600714035728,
+    "content": "paske",
+    "color": "#44078e"
+  },
+  {
+    "name": "human",
+    "type": "human",
+    "date": 1600714040465,
+    "content": "paske quoi ?",
+    "color": "#8c053d"
+  },
+  {
+    "name": "zdoij",
+    "type": "human",
+    "date": 1600714046183,
+    "content": "super!",
+    "color": "#44078e"
+  },
+  {
+    "name": "human",
+    "type": "human",
+    "date": 1600714056663,
+    "content": "La propriété en lecture seule Node.lastChild renvoie le dernier enfant du noeud. Si son parent est un élément, l'enfant est généralement un noeud élément, texte ou commentaire. Elle renvoie null s'il n'y a aucun enfant.",
+    "color": "#8c053d"
+  },
+  {
+    "name": "zdoij",
+    "type": "human",
+    "date": 1600714074759,
+    "content": "RGB color space or RGB color system, constructs all the colors from the combination of the Red, Green and Blue colors.  The red, green and blue use 8 bits each, which have integer values from 0 to 255. This makes 256*256*256=16777216 possible colors.  RGB ≡ Red, Green, Blue  Each pixel in the LED monitor displays colors this way, by combination of red, green and blue LEDs (light emitting diodes).  When the red pixel is set to 0, the LED is turned off. When the red pixel is set to 255, the LED is turned fully on.  Any value between them sets the LED to partial light emission.",
+    "color": "#44078e"
+  },
+  {
+    "name": "coooooool",
+    "type": "human",
+    "date": 1600714276971,
+    "content": "ok dac",
+    "color": "#5f6d02"
+  },
+  {
+    "name": "zodijsdf^iojgîo sjd",
+    "type": "human",
+    "date": 1600714314232,
+    "content": "hello",
+    "color": "#2f0072"
+  },
+  {
+    "name": "coooooool",
+    "type": "human",
+    "date": 1600714318054,
+    "content": "bonjour",
+    "color": "#5f6d02"
+  },
+  {
+    "name": "zodijsdf^iojgîo sjd",
+    "type": "human",
+    "date": 1600714324502,
+    "content": "savate ?",
+    "color": "#2f0072"
+  },
+  {
+    "name": "coooooool",
+    "type": "human",
+    "date": 1600714333765,
+    "content": "whats up ?",
+    "color": "#5f6d02"
+  },
+  {
+    "name": "ni_dieu_ni_mecs",
+    "type": "human",
+    "date": 1600714379972,
+    "content": "alors ?",
+    "color": "#200963"
+  },
+  {
+    "name": "ni_dieu_ni_mecs",
+    "type": "human",
+    "date": 1600714395714,
+    "content": "c'est cool ou bien ?",
+    "color": "#200963"
+  },
+  {
+    "name": "coooooool",
+    "type": "human",
+    "date": 1600714401202,
+    "content": "génial !!!!!",
+    "color": "#5f6d02"
+  },
+  {
+    "name": "zodijsdf^iojgîo sjd",
+    "type": "human",
+    "date": 1600714406306,
+    "content": "ça roule !!!!",
+    "color": "#2f0072"
+  },
+  {
+    "name": "ni_dieu_ni_mecs",
+    "type": "human",
+    "date": 1600714415737,
+    "content": "juste les couleurs qui manquent un peu de varation non ,",
+    "color": "#200963"
+  },
+  {
+    "name": "ni_dieu_ni_mecs",
+    "type": "human",
+    "date": 1600714418082,
+    "content": "?",
+    "color": "#200963"
+  },
+  {
+    "name": "zodijsdf^iojgîo sjd",
+    "type": "human",
+    "date": 1600714423641,
+    "content": "ppeut-être un peu",
+    "color": "#2f0072"
+  },
+  {
+    "name": "coooooool",
+    "type": "human",
+    "date": 1600714426977,
+    "content": "un poil",
+    "color": "#5f6d02"
+  },
+  {
+    "name": "coooooool",
+    "type": "human",
+    "date": 1600714432984,
+    "content": "vous êtes tous violets",
+    "color": "#5f6d02"
+  },
+  {
+    "name": "ni_dieu_ni_mecs",
+    "type": "human",
+    "date": 1600714437344,
+    "content": "sauf toi",
+    "color": "#200963"
+  },
+  {
+    "name": "zodijsdf^iojgîo sjd",
+    "type": "human",
+    "date": 1600714441513,
+    "content": "moi aussi",
+    "color": "#2f0072"
+  },
+  {
+    "name": "Leo",
+    "type": "human",
+    "date": 1600714481261,
+    "content": "Et alors ?",
+    "color": "#217704"
+  },
+  {
+    "name": "Leo",
+    "type": "human",
+    "date": 1600714492822,
+    "content": "C’est pas un problème si ?",
+    "color": "#217704"
+  },
+  {
+    "name": "zodijsdf^iojgîo sjd",
+    "type": "human",
+    "date": 1600714506406,
+    "content": "si moi je trouve que c'esdt pas lisible",
+    "color": "#2f0072"
+  },
+  {
+    "name": "coooooool",
+    "type": "human",
+    "date": 1600714513029,
+    "content": "rhoooo ça va",
+    "color": "#5f6d02"
+  },
+  {
+    "name": "Leo",
+    "type": "human",
+    "date": 1600714621717,
+    "content": "C’est mieux comme ça ",
+    "color": "#217704"
+  },
+  {
+    "name": "Leo",
+    "type": "human",
+    "date": 1600714629494,
+    "content": "👌",
+    "color": "#217704"
+  },
+  {
+    "name": "Leo",
+    "type": "human",
+    "date": 1600714655429,
+    "content": "🖖🏽🦷🙏🏼💋👅👣🖕🏻👋🏾🤙☝️",
+    "color": "#217704"
+  },
+  {
+    "name": "ni_dieu_ni_mecs",
+    "type": "human",
+    "date": 1600714674249,
+    "content": "😛",
+    "color": "#200963"
+  },
+  {
+    "name": "ni_dieu_ni_mecs",
+    "type": "human",
+    "date": 1600714689712,
+    "content": "moi aussi je peux mettre des émojis !!!!",
+    "color": "#200963"
+  },
+  {
+    "name": "ni_dieu_ni_mecs",
+    "type": "human",
+    "date": 1600714704360,
+    "content": "😎📟⏰🕰🏏🚖",
+    "color": "#200963"
   }
 ]
