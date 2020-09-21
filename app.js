@@ -43,10 +43,6 @@ app.get('/id_human.html',function(req,res){
       res.sendFile(__dirname + "/public/id_human.html");
 });
 
-app.get('/id_pseudo.html',function(req,res){
-      res.sendFile(__dirname + "/public/id_pseudo.html");
-});
-
 app.get('/id_machine.html',function(req,res){
       res.sendFile(__dirname + "/public/id_machine.html");
 });
@@ -118,7 +114,7 @@ function uploadChat()
 	}, function(error, response, body){
     	if (!error && response.statusCode == 200) {
 			if(body.success)
-				console.log("Done uploading chat ! " +body.message);
+				console.log("(Done uploading chat ! " +body.message+")");
 			else
 				console.log("Error uploading chat ! " +body.message);
 		}
@@ -224,7 +220,7 @@ wss.on('connection', function connection(ws) {
     		});
 			break;
   		case "getChat":
-			console.log('* getChat u:'+msg.name);
+			//console.log('* getChat u:'+msg.name);
 			ws.send(JSON.stringify(
 				{
 					charset : 'utf8mb4', 

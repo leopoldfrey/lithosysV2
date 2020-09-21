@@ -113,7 +113,7 @@
 
         // Log messages from the server
         ws.onmessage = function (e) {
-            console.log("| WS Received message: " + e.data);
+            //console.log("| WS Received message: " + e.data);
             var reply = JSON.parse(e.data);
             if(reply.command == "newmess") {
             	displayNewMessage(reply.name, reply.date, reply.content, reply.color);
@@ -139,7 +139,7 @@
     }
     
     function displayNewMessage(name, date, content, color) {
-    	console.log("NEW MSG u:"+name+" d:"+date+" msg:"+content+" c:"+color);
+    	//console.log("NEW MSG u:"+name+" d:"+date+" msg:"+content+" c:"+color);
     	
     	d = document.createElement("div");
     	d.classList.add('msg-middle');
@@ -170,7 +170,7 @@
     }
     
     function displayChat(chat) {
-    	console.log("Chat : ",chat);
+    	//console.log("Chat : ",chat);
     	for(n in chat) {
     		displayNewMessage(chat[n].name, chat[n].date, chat[n].content, chat[n].color);
     	}
@@ -187,7 +187,7 @@
 	}
 	
 	function newMessage() {
-		console.log("Sending message : "+document.getElementById("newmess").value);
+		//console.log("Sending message : "+document.getElementById("newmess").value);
 		ws.send(JSON.stringify(
 				{
 					charset : 'utf8mb4', 

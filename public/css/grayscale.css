@@ -378,6 +378,8 @@ td, tr {
 	margin: 5px 0px 0px 0px;
 	font-size: 15px;
 	/*color: rgba(255, 255, 255, 0.2)*/
+	
+	width: 250px;
 }
 
 ul.banner-social-buttons {
