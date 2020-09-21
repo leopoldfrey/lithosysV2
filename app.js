@@ -187,20 +187,22 @@ wss.on('connection', function connection(ws) {
     		console.log("* I am alive !");
     		break;
     	case "newusername":
-    		console.log('* newusername '+msg.name);
+    		console.log('* newusername '+msg.name+' t:'+msg.type);
   			ws.send(JSON.stringify(
 				{
 					charset : 'utf8mb4', 
 					command: "welcome",
 					name: msg.name,
+					type: msg.type,
 					color: colors[count]
 				}));
 			count++;
 			break;
 		case "newmess":
-			console.log('* newmess u:'+msg.name+" d:"+msg.date+" msg:"+msg.content+" c:"+msg.color);
+			console.log('* newmess u:'+msg.name+" t:"+msg.type+"d:"+msg.date+" msg:"+msg.content+" c:"+msg.color);
 			obj = {
 				name: msg.name,
+				type: msg.type,
 				date: msg.date,
 				content: msg.content,
 				color: msg.color
@@ -213,6 +215,7 @@ wss.on('connection', function connection(ws) {
 						charset : 'utf8mb4', 
 						command: "newmess",
 						name: msg.name,
+						type: msg.type,
 						date: msg.date,
 						content: msg.content,
 						color: msg.color

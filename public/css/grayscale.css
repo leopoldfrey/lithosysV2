@@ -24,6 +24,7 @@ html {
 code {
 	background-color: white;
 	color: black;
+	font-size: 70%;
 }
 h1,
 h2,
@@ -40,7 +41,9 @@ h6 {
 }
 
 h1 {
-	font-size: 25px;
+	font-size: 22px;
+	font-weight: 600;
+	letter-spacing: 3px;
 }
 
 p {
@@ -283,9 +286,9 @@ td, tr {
 }
 #section-bottom {
 	position: relative;
-	width: 50%;
+	/*width: 50%;*/
 	bottom: 60px;
-	margin-left: 25%;
+	/*margin-left: 25%;*/
 }
 .centered {
     position: relative;

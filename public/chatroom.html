@@ -14,8 +14,9 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
    	<!-- Custom Fonts -->
- 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-     
+ 	<!--link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"-->
+     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">  
+	
 	<!-- Theme CSS -->
     <!--link href="css/grayscale.min.css" rel="stylesheet"-->
     <link href="css/grayscale.css" rel="stylesheet">
@@ -25,6 +26,7 @@
     	font-size : 10px;
     	font-weight: bold;
     	text-align: left;
+    	letter-spacing: 1px;
     }
     #uname::after {
     	content: " : ";
@@ -32,6 +34,12 @@
     #newmess {
     	text-align: left;
     	width: 100%;
+    	font-size: 15px;
+    	padding: 10px;
+		border-radius: 12px;
+		box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.2);
+		display: inline-block;
+		font-weight: 300;
     }
     
     #section-top, #section-middle, #section-bottom {
@@ -50,7 +58,7 @@
     	position: fixed;
     	bottom: 0px;
     	background-color: #d6e2e3;
-    	padding-top: 10px;
+    	padding-top: 0px;
     	padding-bottom: 10px;
     	box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.2);
 		border: 0.1px solid #bac3c4;
@@ -58,6 +66,11 @@
     #msg-top, #msg-bottom {
     	margin: 0;
     	padding: 0;
+    }
+    #white-padding {
+    	display: block;
+    	width: 100%;
+    	height: 60px;
     }
     
     #section-middle {
@@ -86,7 +99,7 @@
     	display: block;
     	color : gray;
     	font-size: 9px;
-    	margin: 10px 0 -21px 0px;
+    	margin: 10px 0 -20px 0px;
     }
     
     .msg-me {
@@ -94,6 +107,11 @@
     	margin: 10px;
     	right: 0px;
 		position: relative;
+    }
+    
+    .msg-type {
+    	width: 10px;
+		margin: -2px 4px 0px 0px;
     }
     </style>
     
@@ -116,7 +134,7 @@
             //console.log("| WS Received message: " + e.data);
             var reply = JSON.parse(e.data);
             if(reply.command == "newmess") {
-            	displayNewMessage(reply.name, reply.date, reply.content, reply.color);
+            	displayNewMessage(reply.name, reply.type, reply.date, reply.content, reply.color);
             } else if(reply.command == "getChat" && reply.name == username) {
             	displayChat(reply.content);
             }
@@ -138,7 +156,7 @@
         };
     }
     
-    function displayNewMessage(name, date, content, color) {
+    function displayNewMessage(name, type, date, content, color) {
     	//console.log("NEW MSG u:"+name+" d:"+date+" msg:"+content+" c:"+color);
     	
     	d = document.createElement("div");
@@ -157,6 +175,26 @@
     			s2 = document.createElement("span");
     			s2.classList.add('msg-author');
     			s2.innerHTML = name;
+    			i = document.createElement("img");
+    			i.classList.add('msg-type');
+    			switch(type) {
+    				case "human":
+    					i.src = "/img/r_human.png";
+    					break;
+    				case "mineral":
+    					i.src = "/img/r_mineral.png";
+    					break;
+    				case "vegetal":
+    					i.src = "/img/r_veg.png";
+    					break;
+    				case "animal":
+    					i.src = "/img/r_anim.png";
+    					break;
+    				case "machine":
+    					i.src = "/img/r_mach.png";
+    					break;
+    			}
+    			s2.insertBefore(i,s2.firstChild);
     			d.append(s2);
     		d.append(document.createElement("br"));
     		}
@@ -165,14 +203,15 @@
     		d.classList.add('msg-me');
     		
     	d.append(s);
-    	document.getElementById("section-middle").append(d);
+    	mid = document.getElementById("section-middle");
+    	mid.insertBefore(d, mid.lastChild);
     	window.scrollTo(0, document.body.scrollHeight);
     }
     
     function displayChat(chat) {
     	//console.log("Chat : ",chat);
     	for(n in chat) {
-    		displayNewMessage(chat[n].name, chat[n].date, chat[n].content, chat[n].color);
+    		displayNewMessage(chat[n].name, chat[n].type, chat[n].date, chat[n].content, chat[n].color);
     	}
     }
 	
@@ -193,6 +232,7 @@
 					charset : 'utf8mb4', 
 					command: "newmess",
 					name: username,
+					type: "human",
 					date: Date.now(),
 					content: document.getElementById("newmess").value,
 					color: usercolor
@@ -211,6 +251,7 @@
     </section>
 
 	<section id="section-middle" class="container-fluid">
+		<div id="white-padding"><div>
     </section>
 
     <section id="section-bottom" class="container-fluid">

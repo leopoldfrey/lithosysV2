@@ -15,7 +15,8 @@
 
 	<!-- Custom Fonts -->
     <!--link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/orkney" type="text/css"/--> 
- 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+ 	<!--link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"-->
+     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">  
     
     <!-- Theme CSS -->
     <!--link href="css/grayscale.min.css" rel="stylesheet"-->
@@ -60,6 +61,11 @@
 		border: solid white 10px;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+    
+    #result {
+    	width: 250px;
+		padding: 12px;
+    }
 
     </style>
     
@@ -73,8 +79,13 @@
 				document.getElementById("btn-click-photo-os").click();
 				break;
 			case 1:
-				sendName();
-				setStage(2);
+				if(document.getElementById("result").value != "")
+				{
+					sendName();
+					setStage(2);
+				} else {
+					document.getElementById("result").style.color = "red";
+				}
 				break;
 			default:
 				break;
@@ -270,7 +281,8 @@
 				{
 					charset : 'utf8mb4', 
 					command: "newusername",
-					name: username
+					name: username,
+					type: "human"
 				}));
 		setStage(2);
 		getName();	
