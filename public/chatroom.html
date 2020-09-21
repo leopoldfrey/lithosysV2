@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Lithosys | Chatroom</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+   	<!-- Custom Fonts -->
+ 	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+     
+	<!-- Theme CSS -->
+    <!--link href="css/grayscale.min.css" rel="stylesheet"-->
+    <link href="css/grayscale.css" rel="stylesheet">
+    
+    <style>
+    #uname {
+    	font-size : 10px;
+    	font-weight: bold;
+    	text-align: left;
+    }
+    #uname::after {
+    	content: " : ";
+    }
+    #newmess {
+    	text-align: left;
+    	width: 100%;
+    }
+    
+    #section-top, #section-middle, #section-bottom {
+    	width: 100%;
+    	margin-left: 0;
+    }
+    #section-top {
+    	position: fixed;
+    	top: 0px;
+    	background-color: #d6e2e3;
+    	padding: 10px;
+    	box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.2);
+		border: 0.1px solid #bac3c4;
+    }
+    #section-bottom {
+    	position: fixed;
+    	bottom: 0px;
+    	background-color: #d6e2e3;
+    	padding-top: 10px;
+    	padding-bottom: 10px;
+    	box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.2);
+		border: 0.1px solid #bac3c4;
+    }
+    #msg-top, #msg-bottom {
+    	margin: 0;
+    	padding: 0;
+    }
+    
+    #section-middle {
+    	top: 60px;
+    	z-index: -1;
+    	margin-bottom: 150px;
+    }
+    
+    .msg-bubble {
+    	background-color: #6d8284;
+		padding: 10px;
+		border-radius: 12px;
+		box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.2);
+		display: inline-block;
+    }
+    
+    .msg-middle {
+    	color: white;
+    	padding: 10px;
+    	font-size: 15px;
+    	padding: 0px;
+    	margin-bottom: 3px;
+	}
+    
+    .msg-author {
+    	display: block;
+    	color : gray;
+    	font-size: 9px;
+    	margin: 10px 0 -21px 0px;
+    }
+    
+    .msg-me {
+    	text-align: right;
+    	margin: 10px;
+    	right: 0px;
+		position: relative;
+    }
+    </style>
+    
+    <script src="js/ws.js"></script>
+		
+	<script>
+
+	username = sessionStorage.getItem('__lithoname__');
+	usercolor = sessionStorage.getItem('__lithocolor__');
+	console.log("USER : "+username+" "+usercolor);
+	
+	prevUser = "";
+		
+	function connectToWS() {
+        // Connect to websocket server
+        ws = new WebSocket(wsServer);
+
+        // Log messages from the server
+        ws.onmessage = function (e) {
+            console.log("| WS Received message: " + e.data);
+            var reply = JSON.parse(e.data);
+            if(reply.command == "newmess") {
+            	displayNewMessage(reply.name, reply.date, reply.content, reply.color);
+            } else if(reply.command == "getChat" && reply.name == username) {
+            	displayChat(reply.content);
+            }
+        };
+
+        // Log errors
+        ws.onerror = function (error) {
+            console.error("WebSocket Error " + error.stack);
+        };
+
+        ws.onopen = function (event) {
+            console.log("- Connected to ws server");
+            ws.send(JSON.stringify(
+				{
+					charset : 'utf8mb4', 
+					command: "getChat",
+					name: username
+				}));
+        };
+    }
+    
+    function displayNewMessage(name, date, content, color) {
+    	console.log("NEW MSG u:"+name+" d:"+date+" msg:"+content+" c:"+color);
+    	
+    	d = document.createElement("div");
+    	d.classList.add('msg-middle');
+    	
+    	s = document.createElement("span");
+    	s.classList.add('msg-bubble');
+    	s.style.backgroundColor = color;
+    	s.innerHTML = content;
+    	
+    	if(name != username)
+    	{
+    		if(prevUser != name)
+    		{
+    			prevUser = name;
+    			s2 = document.createElement("span");
+    			s2.classList.add('msg-author');
+    			s2.innerHTML = name;
+    			d.append(s2);
+    		d.append(document.createElement("br"));
+    		}
+    		
+    	} else 
+    		d.classList.add('msg-me');
+    		
+    	d.append(s);
+    	document.getElementById("section-middle").append(d);
+    	window.scrollTo(0,1000);
+    }
+    
+    function displayChat(chat) {
+    	console.log("Chat : ",chat);
+    	for(n in chat) {
+    		displayNewMessage(chat[n].name, chat[n].date, chat[n].content, chat[n].color);
+    	}
+    }
+	
+    /* Onload */
+    document.addEventListener("DOMContentLoaded", function(event) {
+    	getName();
+    	connectToWS();
+    });
+    
+    function getName() {
+		document.getElementById("uname").innerHTML = username;
+	}
+	
+	function newMessage() {
+		console.log("Sending message : "+document.getElementById("newmess").value);
+		ws.send(JSON.stringify(
+				{
+					charset : 'utf8mb4', 
+					command: "newmess",
+					name: username,
+					date: Date.now(),
+					content: document.getElementById("newmess").value,
+					color: usercolor
+				}));
+		document.getElementById("newmess").value = "";
+	}
+
+	</script>
+	
+</head>
+
+	<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style="">
+	
+	<section id="section-top" class="container-fluid content-section">
+        <h1 id="msg-top">Lithosys Chatroom</h1>
+    </section>
+
+	<section id="section-middle" class="container-fluid">
+    </section>
+
+    <section id="section-bottom" class="container-fluid">
+        <h1 id="msg-bottom"><span id='uname'></span><input type='text' id='newmess' style='color:black;' value='' onchange='newMessage()' placeholder='type a new message'></input></h1>
+    </section>
+
+	<!-- jQuery -->
+    <script src="vendor/jquery/jquery.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+	</body>
+</html>
