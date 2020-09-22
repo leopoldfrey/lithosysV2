@@ -26,6 +26,9 @@ code {
 	color: black;
 	font-size: 70%;
 }
+#select_species {
+	font-family: 'Raleway', sans-serif;
+}
 h1,
 h2,
 h3,

@@ -199,7 +199,7 @@ wss.on('connection', function connection(ws) {
 			count++;
 			break;
 		case "newmess":
-			console.log('* newmess u:'+msg.name+" t:"+msg.type+"d:"+msg.date+" msg:"+msg.content+" c:"+msg.color);
+			console.log('* newmess u:'+msg.name+" t:"+msg.type+" d:"+msg.date+" msg:"+msg.content+" c:"+msg.color);
 			obj = {
 				name: msg.name,
 				type: msg.type,
@@ -219,6 +219,25 @@ wss.on('connection', function connection(ws) {
 						date: msg.date,
 						content: msg.content,
 						color: msg.color
+					}));
+    		});
+			break;
+		case "delmess":
+			console.log('* delmess d:'+msg.date);
+			// TODO DELETE MESSAGE
+			
+			chat = chat.filter(function(jsonObject) {
+    			return jsonObject.date != msg.date;
+			});
+			uploadChat();
+			
+			
+			wss.clients.forEach(function each(client) {
+      			client.send(JSON.stringify(
+					{
+						charset : 'utf8mb4', 
+						command: "refresh",
+						content: chat
 					}));
     		});
 			break;

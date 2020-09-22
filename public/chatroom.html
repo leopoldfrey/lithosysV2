@@ -12,8 +12,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+ 
    	<!-- Custom Fonts -->
+   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
  	<!--link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"-->
      <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">  
 	
@@ -27,19 +28,28 @@
     	font-weight: bold;
     	text-align: left;
     	letter-spacing: 1px;
+    	position: relative;
+    	top: -3px;
+    	color: gray;
     }
     #uname::after {
-    	content: " : ";
+    	/*content: " : ";*/
     }
     #newmess {
     	text-align: left;
-    	width: 100%;
+    	/*width: 100%;*/
+    	width: calc(100% - 50px);
     	font-size: 15px;
     	padding: 10px;
 		border-radius: 12px;
 		box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.2);
 		display: inline-block;
 		font-weight: 300;
+    }
+    #sendbut {
+    	color: gray;
+		cursor: pointer;
+		padding: 0px 8px;
     }
     
     #section-top, #section-middle, #section-bottom {
@@ -85,6 +95,12 @@
 		border-radius: 12px;
 		box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.2);
 		display: inline-block;
+		max-width: 80%;
+		cursor: default;
+    }
+    
+    .msg-bubble-rem {
+    	cursor: not-allowed;
     }
     
     .msg-middle {
@@ -113,17 +129,54 @@
     	width: 10px;
 		margin: -2px 4px 0px 0px;
     }
+    
+    #admin {
+    	position: fixed;
+    	/*top: 68px;
+    	box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.2);
+    	width: calc(100% - 40px);
+		margin-left: 20px;
+    	height: 300px;*/
+    	background-color: rgba(214,226,227,1);
+    	padding: 12px;
+    	bottom: 75px;
+		width: 100%;
+		height: 56px;
+		border: 0.1px solid #bac3c4;
+    }
+    
+    #admincolorpicker {
+		border-radius: 0px;
+		padding: 0;
+		top: 3px;
+		position: relative;
+		left: 2px;
+		width: 100px;
+	}
     </style>
     
     <script src="js/ws.js"></script>
 		
 	<script>
 
-	username = sessionStorage.getItem('__lithoname__');
-	usercolor = sessionStorage.getItem('__lithocolor__');
-	console.log("USER : "+username+" "+usercolor);
-	
 	prevUser = "";
+	edit = false;
+	admin = false;
+	
+	var getParams = function (url)
+	{
+		var params = {};
+		var parser = document.createElement('a');
+		parser.href = url;
+		var query = parser.search.substring(1);
+		var vars = query.split('&');
+		for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split('=');
+			params[pair[0]] = decodeURIComponent(pair[1]);
+		}
+		return params;
+	};
+
 		
 	function connectToWS() {
         // Connect to websocket server
@@ -137,6 +190,13 @@
             	displayNewMessage(reply.name, reply.type, reply.date, reply.content, reply.color);
             } else if(reply.command == "getChat" && reply.name == username) {
             	displayChat(reply.content);
+            } else if(reply.command == "refresh") {
+            	document.getElementById("section-middle").innerHTML = '<div id="white-padding"><div>';
+            	if(admin)
+            		document.getElementById("white-padding").style.height = "156px";
+    			else
+    				document.getElementById("white-padding").style.height = "100px";
+    			displayChat(reply.content);
             }
         };
 
@@ -156,6 +216,18 @@
         };
     }
     
+    function clickBubble(event) {
+    	if(edit) {
+	    	//console.log("Click "+event.target.id);
+	    	ws.send(JSON.stringify(
+				{
+					charset : 'utf8mb4', 
+					command: "delmess",
+					date: event.target.id
+				}));
+	    }
+    }
+    
     function displayNewMessage(name, type, date, content, color) {
     	//console.log("NEW MSG u:"+name+" d:"+date+" msg:"+content+" c:"+color);
     	
@@ -164,8 +236,12 @@
     	
     	s = document.createElement("span");
     	s.classList.add('msg-bubble');
+    	if(edit)
+    		s.classList.add('msg-bubble-rem');
     	s.style.backgroundColor = color;
     	s.innerHTML = content;
+    	s.id = date;
+    	s.addEventListener('click', clickBubble);
     	
     	if(name != username)
     	{
@@ -185,23 +261,23 @@
     					i.src = "/img/r_mineral.png";
     					break;
     				case "vegetal":
-    					i.src = "/img/r_veg.png";
+    					i.src = "/img/r_vegetal.png";
     					break;
     				case "animal":
-    					i.src = "/img/r_anim.png";
+    					i.src = "/img/r_animal.png";
     					break;
     				case "machine":
-    					i.src = "/img/r_mach.png";
+    					i.src = "/img/r_machine.png";
     					break;
     			}
     			s2.insertBefore(i,s2.firstChild);
     			d.append(s2);
-    		d.append(document.createElement("br"));
+    			d.append(document.createElement("br"));
     		}
     		
     	} else 
     		d.classList.add('msg-me');
-    		
+    	
     	d.append(s);
     	mid = document.getElementById("section-middle");
     	mid.insertBefore(d, mid.lastChild);
@@ -209,42 +285,136 @@
     }
     
     function displayChat(chat) {
-    	//console.log("Chat : ",chat);
-    	for(n in chat) {
+    	for(n in chat)
     		displayNewMessage(chat[n].name, chat[n].type, chat[n].date, chat[n].content, chat[n].color);
-    	}
     }
-	
-    /* Onload */
-    document.addEventListener("DOMContentLoaded", function(event) {
-    	getName();
-    	connectToWS();
-    });
     
-    function getName() {
-		document.getElementById("uname").innerHTML = username;
-	}
-	
-	function newMessage() {
-		//console.log("Sending message : "+document.getElementById("newmess").value);
+    function newMessage() {
 		ws.send(JSON.stringify(
 				{
 					charset : 'utf8mb4', 
 					command: "newmess",
 					name: username,
-					type: "human",
+					type: usertype,
 					date: Date.now(),
 					content: document.getElementById("newmess").value,
 					color: usercolor
 				}));
 		document.getElementById("newmess").value = "";
 	}
+	
+	function changeEdit() {
+		edit = document.getElementById("editbut").checked;
+		x = document.getElementsByClassName('msg-bubble');
+		if(edit)
+	  		for(i in x) {
+	  			if(x[i].classList)
+	  				x[i].classList.add('msg-bubble-rem');
+  			}
+  		else
+  			for(i in x)
+  				if(x[i].classList)
+  					x[i].classList.remove('msg-bubble-rem');
+  	}	
+	
+	function setNewColor() {
+		usercolor = document.getElementById("admincolorpicker").value;
+		sessionStorage.setItem('__lithocolor__', usercolor);
+	}
+	
+	function setNewName() {
+		username = document.getElementById("newname").value;
+		sessionStorage.setItem('__lithoname__', username);
+    	document.getElementById("uname").innerHTML = username;
+	}
+	
+	function selspecies() {
+		v = document.getElementById("select_species").value
+		if(v != "")
+		{
+			usertype = v;
+			sessionStorage.setItem('__lithotype__', usertype);
+			document.getElementById("u_type").src = "/img/r_"+usertype+".png";
+			document.getElementById("u_type2").src = "/img/r_"+usertype+".png";
+		}
+	}
+	
+	/* Onload */
+    document.addEventListener("DOMContentLoaded", function(event) {
+    	
+		params = getParams(window.location.href);
+    	
+    	if(params['user']) {
+    		console.log("USER "+params['user']);
+    		sessionStorage.setItem('__lithoname__', params['user']);
+    	}
+    	
+    	if(params['color']) {
+    		console.log("COLOR #"+params['color']);
+    		sessionStorage.setItem('__lithocolor__', '#'+params['color']);
+    	}
+    	
+    	if(params['type']) {
+    		console.log("TYPE #"+params['type']);
+    		sessionStorage.setItem('__lithotype__', params['type']);
+    	}
+    	
+    	if(params['admin']) {
+    		admin = true;
+    		document.getElementById("admin").style.display = "";
+    		document.getElementById("white-padding").style.height = "156px";
+    	} else {
+    		admin = false;
+    		document.getElementById("admin").style.display = "none";
+    		document.getElementById("white-padding").style.height = "100px";
+    	}
+    	
+    	if(params['edit']) {
+    		edit = true;
+    	} else {
+    		edit = false;
+    	}
+    	
+    	document.getElementById("editbut").checked = edit;
+    	
+    	username = sessionStorage.getItem('__lithoname__');
+		usercolor = sessionStorage.getItem('__lithocolor__');
+		usertype = sessionStorage.getItem('__lithotype__');
+	
+		switch(usertype) {
+    		case "human":
+    			document.getElementById("select_species").selectedIndex = 4;
+    			break;
+    		case "machine":
+    			document.getElementById("select_species").selectedIndex = 5;
+    			break;
+    		case "mineral":
+    			document.getElementById("select_species").selectedIndex = 1;
+    			break;
+    		case "vegetal":
+    			document.getElementById("select_species").selectedIndex = 2;
+    			break;
+    		case "animal":
+    			document.getElementById("select_species").selectedIndex = 3;
+    			break;
+    	}
+    	
+    	document.getElementById("u_type").src = "/img/r_"+usertype+".png";
+		document.getElementById("u_type2").src = "/img/r_"+usertype+".png";
+		
+    	document.getElementById("uname").innerHTML = username;
+		document.getElementById("newname").value = username;
+	
+    	console.log("USER : "+username+" "+usertype+" "+usercolor);
+		
+		connectToWS();
+    });
 
 	</script>
 	
 </head>
 
-	<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style="">
+	<body><!-- id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style=""-->
 	
 	<section id="section-top" class="container-fluid content-section">
         <h1 id="msg-top">Lithosys Chatroom</h1>
@@ -255,8 +425,29 @@
     </section>
 
     <section id="section-bottom" class="container-fluid">
-        <h1 id="msg-bottom"><span id='uname'></span><input type='text' id='newmess' style='color:black;' value='' onchange='newMessage()' placeholder='type a new message'></input></h1>
+        <h1 id="msg-bottom">
+        	<img id='u_type' class='msg-type' src='/img/r_human.png'></img>
+        	<span id='uname'></span>
+        	<input type='text' id='newmess' style='color:black;' value='' 
+        		onkeydown = "if (event.keyCode == 13) document.getElementById('sendbut').click()" placeholder='type a new message'></input>
+        	<i id='sendbut' class="fa fa-send" onclick='newMessage()' ></i>
+        </h1>
     </section>
+
+	<div id='admin'>
+		<select id="select_species" name="species" onchange="selspecies()" style="color:black">
+			<option value="" selected>Select your species...</option>
+			<option value="mineral">Mineral</option>
+			<option value="vegetal">Vegetal</option>
+			<option value="animal">Animal</option>
+			<option value="human">Human</option>
+			<option value="machine">Machine</option>
+		</select>&nbsp;
+		<img id='u_type2' class='msg-type' src='/img/r_human.png'></img>
+        <input type='text' id='newname' onchange="setNewName()" placeholder=''></input>
+        <input type="color" id="admincolorpicker" onchange="setNewColor()" value="#ff0000">
+		<input type="checkbox" id="editbut" onchange="changeEdit()" value="">edit</input>
+	</div>
 
 	<!-- jQuery -->
     <script src="vendor/jquery/jquery.js"></script>
