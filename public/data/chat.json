@@ -308,13 +308,6 @@
     "color": "#8c053d"
   },
   {
-    "name": "zdoij",
-    "type": "human",
-    "date": 1600714007346,
-    "content": "supze",
-    "color": "#44078e"
-  },
-  {
     "name": "human",
     "type": "human",
     "date": 1600714026905,
@@ -623,13 +616,6 @@
     "color": "#00FF00"
   },
   {
-    "name": "Hedoij",
-    "type": "human",
-    "date": 1600769325106,
-    "content": "ssss",
-    "color": "#0b7e00"
-  },
-  {
     "name": "only_human",
     "type": "human",
     "date": 1600772147738,
@@ -768,5 +754,159 @@
     "date": 1600777306843,
     "content": "Juicy!!!!!!",
     "color": "#ffab01"
+  },
+  {
+    "name": "coco",
+    "type": "machine",
+    "date": 1600786692623,
+    "content": "coco",
+    "color": "#ff4f4f"
+  },
+  {
+    "name": "coco",
+    "type": "machine",
+    "date": 1600786797765,
+    "content": "COCO",
+    "color": "#ff4f4f"
+  },
+  {
+    "name": "rosa",
+    "type": "vegetal",
+    "date": 1600786980851,
+    "content": "pinky pink",
+    "color": "#ff9dee"
+  },
+  {
+    "name": "YouplaBoum",
+    "type": "human",
+    "date": 1600787767559,
+    "content": "Gutan Tag",
+    "color": "#ef1083"
+  },
+  {
+    "name": "ni dieux ni mecs",
+    "type": "human",
+    "date": 1600787970223,
+    "content": "GutEn Tag !",
+    "color": "#077533"
+  },
+  {
+    "name": "caillou",
+    "type": "mineral",
+    "date": 1600788008496,
+    "content": "Hey",
+    "color": "#0084d2"
+  },
+  {
+    "name": "ni dieux ni mecs",
+    "type": "human",
+    "date": 1600788024176,
+    "content": "comment va ?",
+    "color": "#077533"
+  },
+  {
+    "name": "caillou",
+    "type": "mineral",
+    "date": 1600788035245,
+    "content": "bien et toi ?",
+    "color": "#0084d2"
+  },
+  {
+    "name": "ni dieux ni mecs",
+    "type": "human",
+    "date": 1600788044440,
+    "content": "super !",
+    "color": "#077533"
+  },
+  {
+    "name": "caillou",
+    "type": "mineral",
+    "date": 1600788088425,
+    "content": "faudrait que quand tu reçoives le message il apparaisse d'abord en SOTOS OCHANDO puis qu'il se tranforme en français non ?",
+    "color": "#0084d2"
+  },
+  {
+    "name": "ni dieux ni mecs",
+    "type": "human",
+    "date": 1600788092518,
+    "content": "peut-être",
+    "color": "#077533"
+  },
+  {
+    "name": "ni dieux ni mecs",
+    "type": "human",
+    "date": 1600788098048,
+    "content": "c'est chiant à faire",
+    "color": "#077533"
+  },
+  {
+    "name": "caillou",
+    "type": "mineral",
+    "date": 1600788103359,
+    "content": "t'as la flegme ?",
+    "color": "#0084d2"
+  },
+  {
+    "name": "ni dieux ni mecs",
+    "type": "human",
+    "date": 1600788107841,
+    "content": "ouais",
+    "color": "#077533"
+  },
+  {
+    "name": "caillou",
+    "type": "mineral",
+    "date": 1600788111764,
+    "content": "bah bravo",
+    "color": "#0084d2"
+  },
+  {
+    "name": "LOL 😂 ",
+    "type": "human",
+    "date": 1600789678582,
+    "content": "Hihi",
+    "color": "#990131"
+  },
+  {
+    "name": "🍊 ",
+    "type": "vegetal",
+    "date": 1600789699300,
+    "content": "Ok",
+    "color": "#ffab01"
+  },
+  {
+    "name": "🍆",
+    "type": "vegetal",
+    "date": 1600789753949,
+    "content": "La 🍌?",
+    "color": "#7f007f"
+  },
+  {
+    "name": "Plante 🌱 ",
+    "type": "vegetal",
+    "date": 1600789890344,
+    "content": "J’ai besoin d’H2O!!!!",
+    "color": "#4e7a27"
+  },
+  {
+    "name": "jack",
+    "type": "human",
+    "date": 1600800759640,
+    "content": "Bonjour",
+    "color": "#017089"
+  },
+  {
+    "name": "jack",
+    "type": "human",
+    "date": 1600800762906,
+    "content": "Cool",
+    "color": "#017089"
+  },
+  {
+    "name": "jack",
+    "type": "human",
+    "date": 1600800765510,
+    "content": "super",
+    "color": "#017089"
   }
 ]
