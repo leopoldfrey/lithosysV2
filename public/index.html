@@ -19,6 +19,7 @@
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
  	<!--link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"-->
      <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">  
+	<link href="css/sotos.css" rel="stylesheet">
     
     <!-- Theme CSS -->
     <link href="css/grayscale.css" rel="stylesheet">
@@ -29,6 +30,69 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+	<style>
+		#logo1 {
+			position: absolute;
+			width: 200px;
+			top: 0px;
+			left: 10px;
+			transition-duration: 500ms;
+		}
+	
+		#logo2 {
+			position: absolute;
+			bottom: 20px;
+			height: 60px;
+			right: 20px;
+			transition-duration: 500ms;
+			filter: drop-shadow(2px 2px 2px #000);
+		}
+	
+		#titleSotos {
+			font-family: 'SOTOS_OCHANDO';
+			font-size: 60px;
+			position: relative;
+			display: inline;
+			top: -70px;
+			color: gray;
+			z-index: 0;
+			text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+		}
+		.brand-heading {
+			z-index: 7;
+			position: relative;
+			text-shadow: 5px 4px 4px rgba(0,0,0,0.5);
+		}
+		
+		.btn-circle {
+			filter: drop-shadow(2px 2px 1px #000);
+		}
+		.fleche {
+			filter: drop-shadow(2px 2px 0px #000);
+		}
+		.intro {
+			background-color: #404040;
+		}
+	
+		@media (width <= 1000px) {
+  			#logo1 {
+  				width: 150px;
+  			}
+  			#logo2 {
+  				height: 45px;
+  			}
+		}
+	
+		@media (width <= 500px) {
+  			#logo1 {
+  				width: 100px;
+  			}
+  			#logo2 {
+  				height: 30px;
+  			}
+		}
+	</style>
 
     <script>
 
@@ -53,17 +117,18 @@
 
     <!-- Intro Header -->
     <header class="intro container-fluid">
-    	<img src='/img/logo_white_pt.png' style='position: absolute; width: 200px; top: 0px; left: -10px;'>
+    	<img id='logo1' src='/img/logo_white_pt.png'>
         <div class="intro-body">
                 <div class="row">
                     <h1 class="brand-heading" style="font-weight: 600">Lithosys</h1>
+                    <h1 id='titleSotos'>Lithosys</h1>
                     <p class="intro-text">Welcome, do you want to chat ?</p>
                     <a href="#main" class="btn btn-circle page-scroll">
-                        <i class="fa fa-angle-double-down animated"></i>
+                        <i class="fa fa-angle-double-down animated fleche"></i>
                     </a>
                 </div>
         </div>
-        <img src='/img/iofle.png' style='position: absolute; bottom: 20px; height: 60px; right: 20px;'>
+        <img id='logo2' src='/img/iofle.png'>
     </header>
     <section id="main" class="fullscreen">
         	<div class="box text-center">

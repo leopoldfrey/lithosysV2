@@ -17,7 +17,8 @@
    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
  	<!--link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"-->
      <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">  
-	
+	<link href="css/sotos.css" rel="stylesheet">
+    	
 	<!-- Theme CSS -->
     <!--link href="css/grayscale.min.css" rel="stylesheet"-->
     <link href="css/grayscale.css" rel="stylesheet">
@@ -39,15 +40,29 @@
     	text-align: left;
     	/*width: 100%;*/
     	width: calc(100% - 50px);
-    	font-size: 15px;
     	padding: 10px;
 		border-radius: 12px;
-		box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.2);
 		display: inline-block;
 		font-weight: 300;
     }
+    
+    .messbox {
+    	box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.2);
+		font-size: 15px;
+    	transition: 200ms;
+	}
+	
+	.sotos {
+		font-family: 'SOTOS_OCHANDO';
+		background-color: rgba(214,226,227,1);
+		color: white;
+		font-size: 30px;
+		border: 0px;
+		box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+	}
+	
     #sendbut {
-    	color: gray;
+    	color: black;
 		cursor: pointer;
 		padding: 0px 8px;
     }
@@ -59,7 +74,6 @@
     #section-top {
     	position: fixed;
     	top: 0px;
-    	background-color: #d6e2e3;
     	padding: 10px;
     	box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.2);
 		border: 0.1px solid #bac3c4;
@@ -67,16 +81,35 @@
     #section-bottom {
     	position: fixed;
     	bottom: 0px;
-    	background-color: #d6e2e3;
     	padding-top: 0px;
     	padding-bottom: 10px;
     	box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.2);
 		border: 0.1px solid #bac3c4;
+		z-index: 2;
     }
-    #msg-top, #msg-bottom {
+    #msg-top, #msg-top2, #msg-bottom {
     	margin: 0;
     	padding: 0;
     }
+    
+    #msg-top {
+    	text-shadow: 1px 1px 1px rgba(0,0,0,0.21);
+    }
+    
+    #msg-top2 {
+  		font-family: 'SOTOS_OCHANDO';
+  		color: white;
+  		z-index: -1;
+  		position: absolute;
+  		top: 10px;
+  		font-size: 35px;
+  		text-shadow: 2px 2px 2px rgba(0,0,0,0.21);
+    }
+    
+    .topbotBgColor {
+     	background-color: #d6e2e3;
+   	}
+    
     #white-padding {
     	display: block;
     	width: 100%;
@@ -137,13 +170,13 @@
     	width: calc(100% - 40px);
 		margin-left: 20px;
     	height: 300px;*/
-    	background-color: rgba(214,226,227,1);
     	padding: 12px;
     	bottom: 75px;
 		width: 100%;
 		height: 56px;
 		border: 0.1px solid #bac3c4;
-    }
+    	box-shadow: 0px -1px 6px 0px rgba(0, 0, 0, 0.2);
+	}
     
     #admincolorpicker {
 		border-radius: 0px;
@@ -153,7 +186,29 @@
 		left: 2px;
 		width: 100px;
 	}
-    </style>
+	
+	#logo3 {
+		width: 68px; 
+		position: fixed;
+		right: 16px;
+	}
+	
+	@media (width <= 400px) {
+		h1 {
+			font-size: 16px;
+		}
+		#msg-top2 {
+  			font-size: 20px;
+		}
+	}
+	
+	@media (width <= 300px) {
+		#logo3 {
+			display: none;
+		}
+	}
+  		
+  	</style>
     
     <script src="js/ws.js"></script>
 		
@@ -219,12 +274,16 @@
     function clickBubble(event) {
     	if(edit) {
 	    	//console.log("Click "+event.target.id);
-	    	ws.send(JSON.stringify(
+	    	if(confirm("Delete this message ? "+event.target.innerHTML))
+	    	{
+	    		ws.send(JSON.stringify(
 				{
 					charset : 'utf8mb4', 
 					command: "delmess",
 					date: event.target.id
 				}));
+			}
+	    	
 	    }
     }
     
@@ -236,6 +295,7 @@
     	
     	s = document.createElement("span");
     	s.classList.add('msg-bubble');
+    	//s.classList.add('sotos');
     	if(edit)
     		s.classList.add('msg-bubble-rem');
     	s.style.backgroundColor = color;
@@ -290,17 +350,29 @@
     }
     
     function newMessage() {
-		ws.send(JSON.stringify(
-				{
-					charset : 'utf8mb4', 
-					command: "newmess",
-					name: username,
-					type: usertype,
-					date: Date.now(),
-					content: document.getElementById("newmess").value,
-					color: usercolor
-				}));
-		document.getElementById("newmess").value = "";
+    	messbox = document.getElementById("newmess");
+		omess = messbox.value;
+		if(omess != "" && omess != " ") {
+			messbox.value = omess.replace(/[^a-zA-Z ]/g, "");
+			messbox.classList.add("sotos");
+			//messbox.disabled = true;
+			messbox.blur();
+			setTimeout(function() {
+				ws.send(JSON.stringify(
+					{
+						charset : 'utf8mb4', 
+						command: "newmess",
+						name: username,
+						type: usertype,
+						date: Date.now(),
+						content: omess,
+						color: usercolor
+					}));
+				messbox.value = "";
+				messbox.focus();
+				messbox.classList.remove("sotos");
+			}, 400);
+		}
 	}
 	
 	function changeEdit() {
@@ -405,9 +477,13 @@
     	document.getElementById("uname").innerHTML = username;
 		document.getElementById("newname").value = username;
 	
+		document.getElementById("admincolorpicker").value = usercolor;
+	
     	console.log("USER : "+username+" "+usertype+" "+usercolor);
 		
 		connectToWS();
+		
+		document.getElementById("newmess").focus();
     });
 
 	</script>
@@ -416,26 +492,27 @@
 
 	<body><!-- id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style=""-->
 	
-	<section id="section-top" class="container-fluid content-section">
-		<img src='/img/logo_petit.png' style='width: 68px; position: fixed; right: 16px;'>
+	<section id="section-top" class="container-fluid content-section topbotBgColor">
+		<img id='logo3' src='/img/logo_petit.png'>
         <h1 id="msg-top">Lithosys Chatroom</h1>
+        <h1 id="msg-top2">Lithosys Chatroom</h1>
     </section>
 
 	<section id="section-middle" class="container-fluid">
 		<div id="white-padding"><div>
     </section>
 
-    <section id="section-bottom" class="container-fluid">
+    <section id="section-bottom" class="container-fluid topbotBgColor">
         <h1 id="msg-bottom">
         	<img id='u_type' class='msg-type' src='/img/r_human.png'></img>
-        	<span id='uname'></span>
-        	<input type='text' id='newmess' style='color:black;' value='' 
-        		onkeydown = "if (event.keyCode == 13) document.getElementById('sendbut').click()" placeholder='type a new message'></input>
+        	<span id='uname'></span><br/>
+        	<input type='text' id='newmess' class='messbox' style='color:black;' value='' 
+        		onkeydown = "if (event.keyCode == 13) document.getElementById('sendbut').click()" placeholder=''></input>
         	<i id='sendbut' class="fa fa-send" onclick='newMessage()' ></i>
         </h1>
     </section>
 
-	<div id='admin'>
+	<div id='admin' class='topbotBgColor'>
 		<select id="select_species" name="species" onchange="selspecies()" style="color:black">
 			<option value="" selected>Select your species...</option>
 			<option value="mineral">Mineral</option>

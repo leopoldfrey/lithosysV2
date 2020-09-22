@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'SOTOS_OCHANDO';
+    src: url('SOTOS_OCHANDO.woff2') format('woff2'),
+        url('SOTOS_OCHANDO.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
