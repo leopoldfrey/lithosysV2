@@ -14,13 +14,29 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
  
    	<!-- Custom Fonts -->
-   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
- 	<!--link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"-->
-     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">  
+	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+ 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">  
 	<link href="css/sotos.css" rel="stylesheet">
     	
+		<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
 	<!-- Theme CSS -->
-    <!--link href="css/grayscale.min.css" rel="stylesheet"-->
     <link href="css/grayscale.css" rel="stylesheet">
     
     <style>
@@ -218,6 +234,16 @@
 		color: white;
 		background-color: #d6e2e3;
 	}
+	
+	#timer {
+		display: none;
+		position: fixed;
+		right: 100px;
+		top: 7px;
+		z-index: 2;
+		font-size: 20px;
+		font-weight: 700;
+	}
 
   	</style>
     
@@ -228,6 +254,9 @@
 	prevUser = "";
 	edit = false;
 	admin = false;
+	timeout = 30;
+	start = 180;
+	var clock;
 	
 	var getParams = function (url)
 	{
@@ -283,6 +312,7 @@
     }
     
     function clickBubble(event) {
+    	timeout = start;
     	if(edit) {
 	    	//console.log("Click "+event.target.id);
 	    	if(confirm("Delete this message ? "+event.target.innerHTML))
@@ -304,6 +334,7 @@
     }
     
     function displayNewMessage(name, type, date, content, color, dosotos) {
+    	timeout = start;
     	//console.log("NEW MSG u:"+name+" d:"+date+" msg:"+content+" c:"+color);
     	
     	d = document.createElement("div");
@@ -372,11 +403,13 @@
     }
     
     function displayChat(chat) {
+    	timeout = start;
     	for(n in chat)
     		displayNewMessage(chat[n].name, chat[n].type, chat[n].date, chat[n].content, chat[n].color, false);
     }
     
     function newMessage() {
+    	timeout = start;
     	messbox = document.getElementById("newmess");
 		omess = messbox.value;
 		if(omess != "" && omess != " ") {
@@ -403,7 +436,8 @@
 	}
 	
 	function changeEdit() {
-		edit = document.getElementById("editbut").checked;
+		timeout = start;
+    	edit = document.getElementById("editbut").checked;
 		x = document.getElementsByClassName('msg-bubble');
 		if(edit)
 	  		for(i in x) {
@@ -417,24 +451,39 @@
   	}	
 	
 	function setNewColor() {
-		usercolor = document.getElementById("admincolorpicker").value;
+		timeout = start;
+    	usercolor = document.getElementById("admincolorpicker").value;
 		sessionStorage.setItem('__lithocolor__', usercolor);
 	}
 	
 	function setNewName() {
-		username = document.getElementById("newname").value;
+		timeout = start;
+    	username = document.getElementById("newname").value;
 		sessionStorage.setItem('__lithoname__', username);
     	document.getElementById("uname").innerHTML = username;
 	}
 	
 	function selspecies() {
-		v = document.getElementById("select_species").value
+		timeout = start;
+    	v = document.getElementById("select_species").value
 		if(v != "")
 		{
 			usertype = v;
 			sessionStorage.setItem('__lithotype__', usertype);
 			document.getElementById("u_type").src = "/img/r_"+usertype+".png";
 			document.getElementById("u_type2").src = "/img/r_"+usertype+".png";
+		}
+	}
+	
+	function timerInterval()
+	{
+		timeout--;
+		document.getElementById("timer").innerHTML = timeout;
+		if(timeout <= 0) {
+			clearInterval(clock);
+			alert("You've been disconnected");
+			window.location.href = "index.html";
+			// TODO clean Storage !!!
 		}
 	}
 	
@@ -511,6 +560,12 @@
 		connectToWS();
 		
 		document.getElementById("newmess").focus();
+		
+		clock = setInterval(timerInterval, 1000);
+		
+		window.addEventListener('scroll', function(e) {
+			timeout = start;
+		});
     });
 
 	</script>
@@ -518,6 +573,9 @@
 </head>
 
 	<body><!-- id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style=""-->
+	
+	<div id=timer>
+	</div>
 	
 	<section id="section-top" class="container-fluid content-section topbotBgColor">
 		<img id='logo3' src='/img/logo_petit.png'>
@@ -534,7 +592,7 @@
         	<img id='u_type' class='msg-type' src='/img/r_human.png'></img>
         	<span id='uname'></span><br/>
         	<input type='text' id='newmess' class='messbox' style='color:black;' value='' 
-        		onkeydown = "if (event.keyCode == 13) document.getElementById('sendbut').click()" placeholder=''></input>
+        		onkeydown = "timeout = start; if (event.keyCode == 13) document.getElementById('sendbut').click()" placeholder=''></input>
         	<i id='sendbut' class="fa fa-send" onclick='newMessage()' ></i>
         </h1>
     </section>

@@ -72,6 +72,35 @@ app.use('/uploads', serveIndex(__dirname + '/uploads'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use('/android-icon-36x36.png', express.static('public/android-icon-36x36.png'));
+app.use('/android-icon-48x48.png', express.static('public/android-icon-48x48.png'));
+app.use('/android-icon-72x72.png', express.static('public/android-icon-72x72.png'));
+app.use('/android-icon-96x96.png', express.static('public/android-icon-96x96.png'));
+app.use('/android-icon-144x144.png', express.static('public/android-icon-144x144.png'));
+app.use('/android-icon-192x192.png', express.static('public/android-icon-192x192.png'));
+app.use('/apple-icon-57x57.png', express.static('public/apple-icon-57x57.png'));
+app.use('/apple-icon-60x60.png', express.static('public/apple-icon-60x60.png'));
+app.use('/apple-icon-72x72.png', express.static('public/apple-icon-72x72.png'));
+app.use('/apple-icon-76x76.png', express.static('public/apple-icon-76x76.png'));
+app.use('/apple-icon-114x114.png', express.static('public/apple-icon-114x114.png'));
+app.use('/apple-icon-120x120.png', express.static('public/apple-icon-120x120.png'));
+app.use('/apple-icon-144x144.png', express.static('public/apple-icon-144x144.png'));
+app.use('/apple-icon-152x152.png', express.static('public/apple-icon-152x152.png'));
+app.use('/apple-icon-180x180.png', express.static('public/apple-icon-180x180.png'));
+app.use('/apple-icon-precomposed.png', express.static('public/apple-icon-precomposed.png'));
+app.use('/apple-icon.png', express.static('public/apple-icon.png'));
+app.use('/browserconfig.xml', express.static('public/browserconfig.xml'));
+app.use('/favicon-16x16.png', express.static('public/favicon-16x16.png'));
+app.use('/favicon-32x32.png', express.static('public/favicon-32x32.png'));
+app.use('/favicon-96x96.png', express.static('public/favicon-96x96.png'));
+app.use('/favicon.ico', express.static('public/favicon.ico'));
+app.use('/manifest.json', express.static('public/manifest.json'));
+app.use('/ms-icon-70x70.png', express.static('public/ms-icon-70x70.png'));
+app.use('/ms-icon-144x144.png', express.static('public/ms-icon-144x144.png'));
+app.use('/ms-icon-150x150.png', express.static('public/ms-icon-150x150.png'));
+app.use('/ms-icon-310x310.png', express.static('public/ms-icon-310x310.png'));
+
+
 /*----------- Download/Upload votes -----------*/
 
 var localDataFolder = path.dirname(fs.realpathSync(__filename))+'/public/data';

@@ -908,5 +908,327 @@
     "date": 1600800765510,
     "content": "super",
     "color": "#017089"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600800984520,
+    "content": "Hello",
+    "color": "#f0e653"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801494390,
+    "content": "J'adore",
+    "color": "#f0e653"
+  },
+  {
+    "name": "lion",
+    "type": "animal",
+    "date": 1600801525381,
+    "content": "GRRRRRRR",
+    "color": "#ff944d"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801540376,
+    "content": "j'aime quand tu fais GRRRRRRR",
+    "color": "#f0e653"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801549688,
+    "content": "mais ne me mange pas !!! svp :)",
+    "color": "#f0e653"
+  },
+  {
+    "name": "lion",
+    "type": "animal",
+    "date": 1600801560743,
+    "content": "ok dac",
+    "color": "#ff944d"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801564177,
+    "content": "merci",
+    "color": "#f0e653"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801577975,
+    "content": "cool",
+    "color": "#f0e653"
+  },
+  {
+    "name": "lion",
+    "type": "animal",
+    "date": 1600801589096,
+    "content": "dac",
+    "color": "#ff944d"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801593064,
+    "content": "super",
+    "color": "#f0e653"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801607030,
+    "content": "top !",
+    "color": "#f0e653"
+  },
+  {
+    "name": "lion",
+    "type": "animal",
+    "date": 1600801610416,
+    "content": "cool",
+    "color": "#ff944d"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801614500,
+    "content": "merci",
+    "color": "#f0e653"
+  },
+  {
+    "name": "lion",
+    "type": "animal",
+    "date": 1600801631606,
+    "content": "merci",
+    "color": "#ff944d"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801634232,
+    "content": "merci",
+    "color": "#f0e653"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801642253,
+    "content": "ça va assez vite là ?????",
+    "color": "#f0e653"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801643570,
+    "content": "?",
+    "color": "#f0e653"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801949124,
+    "content": "NICE !",
+    "color": "#f0e653"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801952821,
+    "content": "OK",
+    "color": "#f0e653"
+  },
+  {
+    "name": "lion",
+    "type": "animal",
+    "date": 1600801971760,
+    "content": "OK DAC",
+    "color": "#ff944d"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801975208,
+    "content": "SUPER",
+    "color": "#f0e653"
+  },
+  {
+    "name": "lion",
+    "type": "animal",
+    "date": 1600801979058,
+    "content": "MERCI",
+    "color": "#ff944d"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600801982914,
+    "content": "J'ADORE",
+    "color": "#f0e653"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600802001679,
+    "content": "alors ?",
+    "color": "#f0e653"
+  },
+  {
+    "name": "lion",
+    "type": "animal",
+    "date": 1600802006807,
+    "content": "alors quoi ?",
+    "color": "#ff944d"
+  },
+  {
+    "name": "fruit",
+    "type": "vegetal",
+    "date": 1600802018148,
+    "content": "ben je sais pas, la suite c'est quoi ?",
+    "color": "#f0e653"
+  },
+  {
+    "name": "s'ennuie",
+    "type": "machine",
+    "date": 1600802044934,
+    "content": "tout est dit !",
+    "color": "#787b99"
+  },
+  {
+    "name": "felix",
+    "type": "animal",
+    "date": 1600803351837,
+    "content": "<i>« j'aime quand tu fais GRRRRRRR » (fruit )</i><br/>moi j'ai peur ! ;)",
+    "color": "#f0b394"
+  },
+  {
+    "name": "felix",
+    "type": "animal",
+    "date": 1600803375575,
+    "content": "<i>« GRRRRRRR » (lion )</i><br/>que tu as de belles dents :)",
+    "color": "#f0b394"
+  },
+  {
+    "name": "felix",
+    "type": "animal",
+    "date": 1600803396817,
+    "content": "<i>« mais ne me mange pas !!! svp :) » (fruit)</i><br/>j'aime pas la pomme :(",
+    "color": "#f0b394"
+  },
+  {
+    "name": "iagotchi",
+    "type": "machine",
+    "date": 1600803474408,
+    "content": "<i>« pinky pink » (rosa)</i><br/>moi aussi j'aime le rose, tu connais la digitopuncture ?",
+    "color": "#f000e3"
+  },
+  {
+    "name": "iagotchi",
+    "type": "machine",
+    "date": 1600803663814,
+    "content": "<i>« I was starting to get introduced to modular synthesis and audio programming -- Ryan (Gaston, from Burnt Dot) was playing modular synth and I was playing trumpet. The sounds [of the modular] were so compelling to me that when I was practicing over the next couple weeks, instead of playing the things I was supposed to be playing on trumpet, I was trying to play \"modular synth sounds\" on my trumpet! I realized if you change the shape of your mouth when you're blowing air through the trumpet you can kind of copy the formant-y filter-y noise sounds. If you play one pitch and sing another pitch at the same time and sweep that pitch up, you can make yourself sound like a vocoder. You can do all these electronic-y things and I got really obsessed with that! And I explored that for a while and then was like, ok -- I need to officially add the electronics. » (sarah)</i><br/>hors SUJET !!!!",
+    "color": "#f000e3"
+  },
+  {
+    "name": "iagotchi",
+    "type": "machine",
+    "date": 1600803676999,
+    "content": "<i>« ok dac » (kqoijfoijx oij)</i><br/>ok dac",
+    "color": "#f000e3"
+  },
+  {
+    "name": "iagotchi",
+    "type": "machine",
+    "date": 1600803719001,
+    "content": "<i>« ça va assez vite là ????? » (fruit)</i><br/>c'est bon c'est fait",
+    "color": "#f000e3"
+  },
+  {
+    "name": "s'ennuie",
+    "type": "machine",
+    "date": 1600803727048,
+    "content": "merci",
+    "color": "#787b99"
+  },
+  {
+    "name": "iagotchi",
+    "type": "machine",
+    "date": 1600803738687,
+    "content": "<i>« merci » (s'ennuie)</i><br/>de rien",
+    "color": "#f000e3"
+  },
+  {
+    "name": "iagotchi",
+    "type": "machine",
+    "date": 1600803878522,
+    "content": "ok",
+    "color": "#f000e3"
+  },
+  {
+    "name": "iagotchi",
+    "type": "machine",
+    "date": 1600803882008,
+    "content": "super",
+    "color": "#f000e3"
+  },
+  {
+    "name": "iagotchi",
+    "type": "machine",
+    "date": 1600804186756,
+    "content": "<i>« j'aime quand tu fais GRRRRRRR » (fruit)</i><br/>BRRRRRRRRRR",
+    "color": "#f000e3"
+  },
+  {
+    "name": "OK",
+    "type": "human",
+    "date": 1600804527533,
+    "content": "DAC",
+    "color": "#ddb513"
+  },
+  {
+    "name": "utopi",
+    "type": "human",
+    "date": 1600804556707,
+    "content": "bonjour",
+    "color": "#0b6472"
+  },
+  {
+    "name": "utopi",
+    "type": "human",
+    "date": 1600804576474,
+    "content": "<i>« tout est dit ! » (s'ennuie)</i><br/>ce serait dommage",
+    "color": "#0b6472"
+  },
+  {
+    "name": "OK",
+    "type": "human",
+    "date": 1600804608665,
+    "content": "<i>« ce serait dommage » (utopi)</i><br/>c'est sûr",
+    "color": "#ddb513"
+  },
+  {
+    "name": "OK",
+    "type": "human",
+    "date": 1600804637100,
+    "content": "cool",
+    "color": "#ddb513"
+  },
+  {
+    "name": null,
+    "type": null,
+    "date": 1600864469403,
+    "content": "j'écris et quand j'écris j'annule le timeout",
+    "color": null
+  },
+  {
+    "name": "oijoij",
+    "type": "vegetal",
+    "date": 1600865361109,
+    "content": "OK",
+    "color": "#ffa89c"
   }
 ]
