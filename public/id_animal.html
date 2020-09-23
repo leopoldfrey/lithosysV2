@@ -192,20 +192,21 @@
         switch(parseInt(stage)) {
             case -1:
                 document.getElementById("section-middle2").style.display = "none";
-                document.getElementById("section-top").style.display = "";
-                document.getElementById("msg-top").innerHTML = "Identification";
+                document.getElementById("msg-top").style.display = "";
+            	document.getElementById("msg-top2").style.display = "none";
+            	document.getElementById("msg-top3").style.display = "none";
             	document.getElementById("img-result").src = "";
             	document.getElementById("img-result").style.display = "none";
                 document.getElementById("img-loading").style.display = "none";
 				document.getElementById("imgResultDiv").style.display = "none";
             	document.getElementById("avatar-div-id").style.display = "";
-            	document.getElementById("btn-click-look").innerHTML = "Take a selfie";
-                document.getElementById("btn-click-look").style.display = "";
+            	document.getElementById("btn-click-look").style.display = "";
                 break;
             case 0:
                 document.getElementById("section-middle2").style.display = "none";
-                document.getElementById("section-top").style.display = "";
-                document.getElementById("msg-top").innerHTML = "Analyzing your selfie";
+                document.getElementById("msg-top").style.display = "none";
+            	document.getElementById("msg-top2").style.display = "";
+            	document.getElementById("msg-top3").style.display = "none";
             	document.getElementById("img-result").src = "";
                 document.getElementById("img-result").style.display = "none";
                 document.getElementById("img-loading").style.display = "";
@@ -218,8 +219,9 @@
                 break;
             case 1:
                 document.getElementById("section-middle2").style.display = "";
-                document.getElementById("section-top").style.display = "";
-                document.getElementById("msg-top").innerHTML = "Access Denied";
+                document.getElementById("msg-top").style.display = "none";
+            	document.getElementById("msg-top2").style.display = "none";
+            	document.getElementById("msg-top3").style.display = "";
             	document.getElementById("img-result").src = "";
                 document.getElementById("img-result").style.display = "none";
                 document.getElementById("img-loading").style.display = "none";
@@ -230,45 +232,10 @@
         }
             
     }
-    
-    function connectToWS() {
-        // Connect to websocket server
-        ws = new WebSocket(wsServer);
-
-        // Log messages from the server
-        ws.onmessage = function (e) {
-            console.log("| WS Received message: " + e.data);
-            var reply = JSON.parse(e.data);
-            /*if (reply.command == "goto") {
-            	if(reply.referendum == "future")
-            		window.location.href = '/referendum.html';
-            } else if(reply.command == "setReferendum") {
-            	if(reply.referendum == "future")
-            		window.location.href = '/referendum.html';
-            }*/
-        };
-
-        // Log errors
-        ws.onerror = function (error) {
-            console.error("WebSocket Error " + error.stack);
-        };
-
-        ws.onopen = function (event) {
-            console.log("- Connected to ws server");
-            ws.send(JSON.stringify(
-				{
-					charset : 'utf8mb4', 
-					command: "iAmNewWheteTo"
-				}));
-        };
-    }
-
         /* Onload */
     document.addEventListener("DOMContentLoaded", function(event) {
 
-    	connectToWS();
-
-        // Buttons
+    	// Buttons
         document.getElementById("btn-click-look").onclick = onClick;
         
         if (window.File && window.FileReader && window.FormData) {
@@ -298,10 +265,12 @@
     
     </nav>
 
-    <!-- Section -->
-    <section id="section-top" style="padding-top:30px; display:none" class="container-fluid content-section text-center" style="padding:0;">
+	<!-- Section -->
+    <section id="section-top" style="padding-top:30px;" class="container-fluid content-section text-center" style="padding:0;">
         
-        <h1><span id="msg-top"></span></h1>
+        <h1 id="msg-top" data-localize='animal.title1'>Identification</h1>
+        <h1 id="msg-top2" style='display: none' data-localize='animal.title2'>Analyzing your selfie</h1>
+        <h1 id="msg-top3" style='display: none' data-localize='access.denied'>Access Denied</h1>
         
         <div class="row">
 
@@ -315,22 +284,17 @@
             
 			<div class="col-lg-12">
                 <input id="btn-click-photo-os" name="biosync_image" type="file" accept="image/*" style="display:none">
-                <div id="btn-click-look"  class="btn btn-lg btn-click-look">TAKE A<br>PHOTO</div>
+                <div id="btn-click-look"  class="btn btn-lg btn-click-look" data-localize='animal.message1'>Take a selfie</div>
             </div>            
        </div>
    </section>
 
 	<section id="section-middle2"  class="container-fluid content-section text-center" style="/*bottom: 80px; */position: relative; display: none; width:100%;">
-		<h4><span id="msg-bottom" style="font-size:12px;">
-			WARNING !<br/>
-			A person convicted of identity theft<br/>can be sentenced up to five years in prison<br/>and fined up to €75,000.
-		</span></h4>
-        <!--p style="font-size: 20px; padding: 0px 20px;text-transform: uppercase;">
-			</p-->
+		<h4 id="msg-bottom" style="font-size:12px;" data-localize="warning2">WARNING !<br/>A person convicted of identity theft<br/>can be sentenced up to five years in prison<br/>and fined up to €75,000.</h4>
 	</section>
 
    <section id="section-btn" class="container-fluid content-section text-center" style="padding:0;">
-        <div class="btn btn-lg btn-click-look" onclick="window.location.href = '/#main';">GO BACK</div>
+        <div class="btn btn-lg btn-click-look" onclick="window.location.href = '/#main';" data-localize="homebut">GO BACK</div>
     </section>
 
     <!-- jQuery -->
@@ -345,6 +309,11 @@
     <!-- Theme JavaScript -->
     <!--script src="js/grayscale.min.js"></script-->
     <script src="js/grayscale.js"></script>
+
+    <script src="js/jquery.localize.min.js"></script>
+	<script>
+		$("[data-localize]").localize("strings");
+	</script>
 
 </body>
 

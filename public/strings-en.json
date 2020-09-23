@@ -1,0 +1,51 @@
+{
+	"index": {
+		"welcome" : "Welcome, do you want to chat ?",
+		"id-requ" : "Identification Required",
+		"selSpec" : {
+			"0" : "Select your species...",
+			"1" : "Mineral",
+			"2" : "Vegetal",
+			"3" : "Animal",
+			"4" : "Human",
+			"5" : "Machine",
+		}
+	},
+	"homebut" : "Go Back",
+	"access" : {
+		"denied" : "Access Denied",
+		"granted" : "Access Granted"
+	},
+	"warning1" : "WARNING !<br/>You have used a human fingertip to enter this page.<br/><br/>A person convicted of identity theft<br/>can be sentenced up to five years in prison<br/>and fined up to €75,000.",
+	"warning2" : "WARNING !<br/>A person convicted of identity theft<br/>can be sentenced up to five years in prison<br/>and fined up to €75,000.",
+	"vegetal" : {
+		"title1" : "Chemical Identification",
+		"title2" : "Analyzing your chemical signature",
+		"message1": "Deposit your chemical signature on the screen"
+	},
+	"animal" : {
+		"title1" : "Identification",
+		"title2" : "Analyzing your selfie",
+		"message1": "Take a selfie"
+	},
+	"machine" : {
+		"title1" : "Binary Identification 1",
+		"title2" : "Binary Identification 2",
+		"title3" : "Binary Identification 3",
+		"checkSum": "Enter"
+	},
+	"human" : {
+		"title1" : "Identification",
+		"title2" : "Analyzing your selfie",
+		"title3" : "User Name",
+		"message1": "Take a selfie",
+		"message2": "Enter",
+		"message3": "Welcome to the chatroom"
+	},
+	"chat": {
+		"moderate" : "Moderate",
+		"quote" : "Quote this message from ",
+		"delete" : "Delete this message ?",
+		"disconnect" : "You've been disconnected"
+	}
+}

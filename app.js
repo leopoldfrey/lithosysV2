@@ -100,6 +100,11 @@ app.use('/ms-icon-144x144.png', express.static('public/ms-icon-144x144.png'));
 app.use('/ms-icon-150x150.png', express.static('public/ms-icon-150x150.png'));
 app.use('/ms-icon-310x310.png', express.static('public/ms-icon-310x310.png'));
 
+app.use('/strings-fr.json', express.static('public/strings-fr.json'));
+app.use('/strings-fr-FR.json', express.static('public/strings-fr.json'));
+app.use('/strings-en.json', express.static('public/strings-en.json'));
+app.use('/strings-en-US.json', express.static('public/strings-en.json'));
+
 
 /*----------- Download/Upload votes -----------*/
 

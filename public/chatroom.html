@@ -314,8 +314,7 @@
     function clickBubble(event) {
     	timeout = start;
     	if(edit) {
-	    	//console.log("Click "+event.target.id);
-	    	if(confirm("Delete this message ? "+event.target.innerHTML))
+	    	if(confirm(document.getElementById("hid-delete").innerHTML+" "+event.target.innerHTML))
 	    	{
 	    		ws.send(JSON.stringify(
 				{
@@ -325,7 +324,7 @@
 				}));
 			}
 	    } else {
-	    	if(confirm("Quote this message from "+event.target.dataset.type+" ["+event.target.dataset.author+"] ?\n\n\u00ab"+event.target.innerHTML+"\u00bb"))
+	    	if(confirm(document.getElementById("hid-quote").innerHTML+event.target.dataset.type+" ["+event.target.dataset.author+"] ?\n\n\u00ab"+event.target.innerHTML+"\u00bb"))
 	    	{
 	    		document.getElementById("newmess").value = "<i>\u00ab "+event.target.innerHTML+" \u00bb ("+event.target.dataset.author+")</i><br/>";
 	    		document.getElementById("newmess").focus();
@@ -481,9 +480,9 @@
 		document.getElementById("timer").innerHTML = timeout;
 		if(timeout <= 0) {
 			clearInterval(clock);
-			alert("You've been disconnected");
+			alert(document.getElementById("hid-disconnect").innerHTML);
 			window.location.href = "index.html";
-			// TODO clean Storage !!!
+			sessionStorage.clear();
 		}
 	}
 	
@@ -599,24 +598,34 @@
 
 	<div id='admin' class='topbotBgColor'>
 		<select id="select_species" name="species" onchange="selspecies()" style="color:black">
-			<option value="" selected>Select your species...</option>
-			<option value="mineral">Mineral</option>
-			<option value="vegetal">Vegetal</option>
-			<option value="animal">Animal</option>
-			<option value="human">Human</option>
-			<option value="machine">Machine</option>
+			<option value="" data-localize="index.selSpec.0">Select your species...</option>
+			<option value="mineral" data-localize="index.selSpec.1">Mineral</option>
+			<option value="vegetal" data-localize="index.selSpec.2">Vegetal</option>
+			<option value="animal" data-localize="index.selSpec.3">Animal</option>
+			<option value="human" data-localize="index.selSpec.4">Human</option>
+			<option value="machine" data-localize="index.selSpec.5">Machine</option>
 		</select>&nbsp;
 		<img id='u_type2' class='msg-type' src='/img/r_human.png'></img>
         <input type='text' id='newname' onchange="setNewName()" placeholder=''></input>
         <input type="color" id="admincolorpicker" onchange="setNewColor()" value="#ff0000">
-		<input type="checkbox" id="editbut" onchange="changeEdit()" value="">edit</input>
+		<input type="checkbox" id="editbut" name='modbut' onchange="changeEdit()" value=""></input>
+		<label for='modbut' data-localize="chat.moderate" style='font-weight: 300'>Moderate</label>
 	</div>
+
+	<span id="hid-quote" style="display: none" data-localize="chat.quote">Quote this message from </span>
+	<span id="hid-delete" style="display: none" data-localize="chat.delete">Delete this message ?</span>
+	<span id="hid-disconnect" style="display: none" data-localize="chat.disconnect">You've been disconnected</span>
 
 	<!-- jQuery -->
     <script src="vendor/jquery/jquery.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <script src="js/jquery.localize.min.js"></script>
+	<script>
+		$("[data-localize]").localize("strings");
+	</script>
 
 	</body>
 </html>
