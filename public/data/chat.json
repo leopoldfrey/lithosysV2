@@ -1237,5 +1237,40 @@
     "date": 1600868037373,
     "content": "super",
     "color": "#027f68"
+  },
+  {
+    "name": "test",
+    "type": "animal",
+    "date": 1600889997545,
+    "content": "ok",
+    "color": "#ffd5d5"
+  },
+  {
+    "name": "leo",
+    "type": "human",
+    "date": 1600890198551,
+    "content": "OK",
+    "color": null
+  },
+  {
+    "name": "Cool",
+    "type": "human",
+    "date": 1600897207944,
+    "content": "<i>« <i>« ce serait dommage » (utopi)</i><br>c'est sûr » (OK)</i><br/>super!!!",
+    "color": "#0c4d89"
+  },
+  {
+    "name": "Cool",
+    "type": "human",
+    "date": 1600897213884,
+    "content": "Ok",
+    "color": "#0c4d89"
+  },
+  {
+    "name": "efzo",
+    "type": "human",
+    "date": 1601284765415,
+    "content": "Bonjour !",
+    "color": "#bf1355"
   }
 ]

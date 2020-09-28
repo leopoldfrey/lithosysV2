@@ -51,12 +51,12 @@ app.get('/chatroom.html',function(req,res){
       res.sendFile(__dirname + "/public/chatroom.html");
 });
 
-app.get('/chat.json',function(req,res){
-      res.sendFile(__dirname + "/public/chat.json");
+app.get('/chatbank.html',function(req,res){
+      res.sendFile(__dirname + "/public/chatbank.html");
 });
 
-app.get('/rocio.html',function(req,res){
-      res.sendFile(__dirname + "/public/rocio.html");
+app.get('/info.html',function(req,res){
+      res.sendFile(__dirname + "/public/info.html");
 });
 
 /*----------- Static Files -----------*/
@@ -114,7 +114,9 @@ console.log('local data folder \"', localDataFolder, "\"");
 /*----------- parameters -----------*/
 
 var fileName = 'public/data/chat.json';
+var fileNameBank = 'public/data/chatBank.json';
 var chat = [];
+var chatBank = [];
 var colors = randomColor({luminosity: 'dark', count: 512});
 var count = 0;
 
@@ -129,6 +131,28 @@ function downloadChat()
 				chat = JSON.parse(xmlReq.responseText);
 				jsonString = JSON.stringify(chat, null, 2);
   				fs.writeFileSync(fileName, jsonString, err => {
+					if (err) {
+						console.log('Error writing file', err);
+					} else {
+						console.log('Successfully wrote file');
+					}
+				});
+				downloadChatBank();
+			}
+			xmlReq.send();
+}
+
+function downloadChatBank()
+{	
+	var xmlReq = new XMLHttpRequest();
+			filename = "https://www.grabugemusic.fr/g5/public/data/chatBank.json";
+			xmlReq.open('GET', filename);
+			xmlReq.setRequestHeader('Cache-Control', 'no-cache');
+    		xmlReq.onloadend = function() {
+				console.log("\""+filename+"\" loaded.");
+				chatBank = JSON.parse(xmlReq.responseText);
+				jsonString = JSON.stringify(chatBank, null, 2);
+  				fs.writeFileSync(fileNameBank, jsonString, err => {
 					if (err) {
 						console.log('Error writing file', err);
 					} else {
@@ -153,6 +177,55 @@ function uploadChat()
 				console.log("Error uploading chat ! " +body.message);
 		}
 	});
+}
+
+function uploadChatBank()
+{	
+	request.post({
+    	url: 'https://www.grabugemusic.fr/g5/public/data/backupChatBank.php',
+    	json: true,
+    	body: chatBank
+	}, function(error, response, body){
+    	if (!error && response.statusCode == 200) {
+			if(body.success)
+				console.log("(Done uploading chatBank ! " +body.message+")");
+			else
+				console.log("Error uploading chatBank ! " +body.message);
+		}
+	});
+}
+
+function randomPick() {
+	i = getRandomInt(chatBank.length);
+	obj = {
+		name: chatBank[i].name,
+		type: chatBank[i].type,
+		date: Date.now(),
+		content: chatBank[i].content,
+		color: chatBank[i].color
+	};
+	chat.push(obj);
+	uploadChat();
+	console.log("Random Pick "+obj.name+" "+obj.type+" "+obj.content);
+	wss.clients.forEach(
+		function each(client) {
+      		client.send(JSON.stringify(
+				{
+					charset : 'utf8mb4', 
+					command: "newmess",
+					name: obj.name,
+					type: obj.type,
+					date: obj.date,
+					content: obj.content,
+					color: obj.color
+				}));
+    	}
+    );
+	
+}
+
+function getRandomInt(max) {
+	return Math.floor(Math.random() * Math.floor(max));
 }
 
 /*----------- Launch server -----------*/
@@ -231,6 +304,7 @@ wss.on('connection', function connection(ws) {
 					color: colors[count]
 				}));
 			count++;
+			setTimeout(randomPick, 5000);
 			break;
 		case "newmess":
 			console.log('* newmess u:'+msg.name+" t:"+msg.type+" d:"+msg.date+" msg:"+msg.content+" c:"+msg.color);
@@ -258,13 +332,10 @@ wss.on('connection', function connection(ws) {
 			break;
 		case "delmess":
 			console.log('* delmess d:'+msg.date);
-			// TODO DELETE MESSAGE
-			
 			chat = chat.filter(function(jsonObject) {
     			return jsonObject.date != msg.date;
 			});
 			uploadChat();
-			
 			
 			wss.clients.forEach(function each(client) {
       			client.send(JSON.stringify(
@@ -272,6 +343,65 @@ wss.on('connection', function connection(ws) {
 						charset : 'utf8mb4', 
 						command: "refresh",
 						content: chat
+					}));
+    		});
+			break;
+		case "newmessBank":
+			console.log('* newmessBank u:'+msg.name+" t:"+msg.type+" d:"+msg.date+" msg:"+msg.content+" c:"+msg.color);
+			obj = {
+				name: msg.name,
+				type: msg.type,
+				date: msg.date,
+				content: msg.content,
+				color: msg.color
+			};
+			chatBank.push(obj);
+			uploadChatBank();
+			wss.clients.forEach(function each(client) {
+      			client.send(JSON.stringify(
+					{
+						charset : 'utf8mb4', 
+						command: "getChatBank",
+						content: chatBank
+					}));
+    		});
+			break;
+		case "editmessBank":
+			console.log('* editmessBank u:'+msg.name+" t:"+msg.type+" d:"+msg.date+" msg:"+msg.content+" c:"+msg.color);
+			
+			obj = chatBank.filter(function(jsonObject) {
+    			return jsonObject.date == msg.date;
+			});
+			obj[0].name = msg.name;
+			obj[0].type = msg.type;
+			obj[0].content = msg.content;
+			obj[0].color = msg.color;
+			
+			//chatBank.push(obj);
+			uploadChatBank();
+			wss.clients.forEach(function each(client) {
+      			client.send(JSON.stringify(
+					{
+						charset : 'utf8mb4', 
+						command: "getChatBank",
+						content: chatBank
+					}));
+    		});
+			break;
+		case "delmessBank":
+			console.log('* delmessBank d:'+msg.date);
+			
+			chatBank = chatBank.filter(function(jsonObject) {
+    			return jsonObject.date != msg.date;
+			});
+			uploadChatBank();
+			
+			wss.clients.forEach(function each(client) {
+      			client.send(JSON.stringify(
+					{
+						charset : 'utf8mb4', 
+						command: "getChatBank",
+						content: chatBank
 					}));
     		});
 			break;
@@ -283,6 +413,15 @@ wss.on('connection', function connection(ws) {
 					command: "getChat",
 					name: msg.name,
 					content: chat
+				}));
+			break;
+  		case "getChatBank":
+			console.log('* getChatBank');
+			ws.send(JSON.stringify(
+				{
+					charset : 'utf8mb4', 
+					command: "getChatBank",
+					content: chatBank
 				}));
 			break;
   		default:

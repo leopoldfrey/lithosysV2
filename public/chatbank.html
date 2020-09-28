@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Lithosys | Chatroom</title>
+    <title>Lithosys | ChatBank Editor</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,6 +40,14 @@
     <link href="css/grayscale.css" rel="stylesheet">
     
     <style>
+    body {
+    	z-index: -10;
+    	position: relative;
+    }
+   
+    html {
+    }
+    
     #uname {
     	font-size : 10px;
     	font-weight: bold;
@@ -216,6 +224,38 @@
 		cursor: pointer;
 	}
 	
+	#bank {
+		color: white;
+		font-size: 15px;
+		top: 60px;
+		z-index: -1;
+		margin-bottom: 136px;
+		position: relative;
+		margin: 20px;
+		width: calc(100% - 40px);
+		border: 1px solid lightgray;
+		margin-bottom: 400px;
+	}
+	#bank th {
+		background-color: gray;
+	}
+	#bankBody td, #bank th {
+		border: 0.5px solid lightgray;
+		padding: 10px;
+	}
+	
+	td {
+		cursor : pointer;
+	}
+	
+	.italic {
+		font-style: italic;
+	}
+	
+	option {
+		font-family: courier;
+	}
+	
 	@media (width <= 400px) {
 		h1 {
 			font-size: 16px;
@@ -253,11 +293,10 @@
 	<script>
 
 	prevUser = "";
+	admin = true;
 	edit = false;
-	admin = false;
-	timeout = 30;
-	start = 180;
-	var clock;
+	var chatBank = [];
+	var curId = 0;
 	
 	var getParams = function (url)
 	{
@@ -282,17 +321,9 @@
         ws.onmessage = function (e) {
             //console.log("| WS Received message: " + e.data);
             var reply = JSON.parse(e.data);
-            if(reply.command == "newmess") {
-            	displayNewMessage(reply.name, reply.type, reply.date, reply.content, reply.color, true);
-            } else if(reply.command == "getChat" && reply.name == username) {
-            	displayChat(reply.content);
-            } else if(reply.command == "refresh") {
-            	document.getElementById("section-middle").innerHTML = '<div id="white-padding"><div>';
-            	if(admin)
-            		document.getElementById("white-padding").style.height = "156px";
-    			else
-    				document.getElementById("white-padding").style.height = "100px";
-    			displayChat(reply.content);
+            if(reply.command == "getChatBank") {
+            	displayChatBank(reply.content);
+            	setNew();
             }
         };
 
@@ -306,166 +337,110 @@
             ws.send(JSON.stringify(
 				{
 					charset : 'utf8mb4', 
-					command: "getChat",
-					name: username
+					command: "getChatBank"
 				}));
         };
     }
     
-    function clickBubble(event) {
-    	timeout = start;
-    	if(edit) {
-	    	if(confirm(document.getElementById("hid-delete").innerHTML+" "+event.target.innerHTML))
-	    	{
-	    		ws.send(JSON.stringify(
-				{
-					charset : 'utf8mb4', 
-					command: "delmess",
-					date: event.target.id
-				}));
-			}
-	    } else {
-	    	if(confirm(document.getElementById("hid-quote").innerHTML+event.target.dataset.type+" ["+event.target.dataset.author+"] ?\n\n\u00ab"+event.target.innerHTML+"\u00bb"))
-	    	{
-	    		document.getElementById("newmess").value = "<i>\u00ab "+event.target.innerHTML+" \u00bb ("+event.target.dataset.author+")</i><br/>";
-	    		document.getElementById("newmess").focus();
-	    	}
-	    }
-    }
-    
-    function displayNewMessage(name, type, date, content, color, dosotos) {
-    	timeout = start;
-    	//console.log("NEW MSG u:"+name+" d:"+date+" msg:"+content+" c:"+color);
-    	
-    	d = document.createElement("div");
-    	d.classList.add('msg-middle');
-    	
-    	s = document.createElement("span");
-    	s.classList.add('msg-bubble');
-    	s.dataset.author = name;
-    	s.dataset.type = type;
-    	s.dataset.date = date;
-    	if(edit)
-    		s.classList.add('msg-bubble-rem');
-    	s.style.backgroundColor = color;
-    	if(dosotos) {
-	    	s.classList.add('msg-bubble-sotos');
-    		s.innerHTML = content.replace(/[^a-zA-Z ]/g, "");
-    	} else
-    		s.innerHTML = content;
-    	s.id = date;
-    	s.addEventListener('click', clickBubble);
-    	
-    	if(name != username)
-    	{
-    		if(prevUser != name)
-    		{
-    			prevUser = name;
-    			s2 = document.createElement("span");
-    			s2.classList.add('msg-author');
-    			s2.innerHTML = name;
-    			i = document.createElement("img");
-    			i.classList.add('msg-type');
-    			switch(type) {
-    				case "human":
-    					i.src = "/img/r_human.png";
-    					break;
-    				case "mineral":
-    					i.src = "/img/r_mineral.png";
-    					break;
-    				case "vegetal":
-    					i.src = "/img/r_vegetal.png";
-    					break;
-    				case "animal":
-    					i.src = "/img/r_animal.png";
-    					break;
-    				case "machine":
-    					i.src = "/img/r_machine.png";
-    					break;
-    			}
-    			s2.insertBefore(i,s2.firstChild);
-    			d.append(s2);
-    			d.append(document.createElement("br"));
-    		}
+    function displayNewMessage(date, name, type, content, color) {
+    	tr = document.createElement("tr");
+    	tr.id = date;
+    	tr.addEventListener('click', clickRow);
+    	tdName = document.createElement("td");
+    	tdName.id = date;
+    	tdName.innerHTML = name;
+    	tdType = document.createElement("td");
+    	tdType.id = date;
+    	tdType.innerHTML = type;
+    	tr.style.backgroundColor = color;
+    	tdContent = document.createElement("td");
+    	tdContent.id = date; + "_content";
+    	tdContent.classList.add("italic");
+    	tdContent.innerHTML = content;
+    	tdDel = document.createElement("td");
+    	tdDel.innerHTML = '<i class="fa fa-remove" onclick="delMessage('+date+')"></i>';
     		
-    	} else 
-    		d.classList.add('msg-me');
-    	
-    	d.append(s);
-    	mid = document.getElementById("section-middle");
-    	mid.insertBefore(d, mid.lastChild);
-    	
-    	setTimeout(function() {
-			s.classList.remove("msg-bubble-sotos");
-			s.innerHTML = content;
-		}, 300);
-    	window.scrollTo(0, document.body.scrollHeight);
+    	tr.append(tdName);
+    	tr.append(tdType);
+    	tr.append(tdContent);
+    	tr.append(tdDel);
+    	document.getElementById("bankBody").append(tr);
+    	//document.getElementById(date+"_typepick").value = type;    	
     }
     
-    function displayChat(chat) {
-    	timeout = start;
-    	for(n in chat)
-    		displayNewMessage(chat[n].name, chat[n].type, chat[n].date, chat[n].content, chat[n].color, false);
+    function setNew() {
+    	document.getElementById("newmess").value = "";
+		document.getElementById("sendbut").classList.add("fa-plus");
+    	document.getElementById("sendbut").classList.remove("fa-refresh");
+		
+		setName("");
+		setColor("#000000");
+		setType("none");
+		curId = 0;
     }
     
-    function newMessage() {
-    	timeout = start;
-    	messbox = document.getElementById("newmess");
-		omess = messbox.value;
-		if(omess != "" && omess != " ") {
-			messbox.value = omess.replace(/[^a-zA-Z ]/g, "");
-			messbox.classList.add("sotos");
-			//messbox.disabled = true;
-			messbox.blur();
-			setTimeout(function() {
-				ws.send(JSON.stringify(
-					{
-						charset : 'utf8mb4', 
-						command: "newmess",
-						name: username,
-						type: usertype,
-						date: Date.now(),
-						content: omess,
-						color: usercolor
-					}));
-				messbox.value = "";
-				messbox.focus();
-				messbox.classList.remove("sotos");
-			}, 600);
-		}
+    function clickRow(event) {
+    	curId = event.target.id;
+    	obj = chatBank.filter(function(jsonObject) {
+    			return jsonObject.date == curId;
+			});
+		if(obj[0])
+		{
+			console.log('click row '+curId+' '+obj[0].name, obj[0].type, obj[0].color, obj[0].content);
+			setName(obj[0].name);
+			setColor(obj[0].color);
+			setType(obj[0].type);
+			document.getElementById("newmess").value = obj[0].content;
+			document.getElementById("sendbut").classList.remove("fa-plus");
+    		document.getElementById("sendbut").classList.add("fa-refresh");
+    		edit = true;
+		}	
+    }
+    
+    function displayChatBank(chat) {
+    	chatBank = chat;
+    	document.getElementById("bankBody").innerHTML = "";
+    	for(n in chatBank)
+    		displayNewMessage(chatBank[n].date, chatBank[n].name, chatBank[n].type, chatBank[n].content, chatBank[n].color);
+    }
+    
+    function setNewColor() {
+		usercolor = document.getElementById("admincolorpicker").value;
+		sessionStorage.setItem('__lithocolor__', usercolor);
 	}
 	
-	function changeEdit() {
-		timeout = start;
-    	edit = document.getElementById("editbut").checked;
-		x = document.getElementsByClassName('msg-bubble');
-		if(edit)
-	  		for(i in x) {
-	  			if(x[i].classList)
-	  				x[i].classList.add('msg-bubble-rem');
-  			}
-  		else
-  			for(i in x)
-  				if(x[i].classList)
-  					x[i].classList.remove('msg-bubble-rem');
-  	}	
-	
-	function setNewColor() {
-		timeout = start;
-    	usercolor = document.getElementById("admincolorpicker").value;
+	function setColor(c) {
+		usercolor = c;
+		document.getElementById("admincolorpicker").value = c;
 		sessionStorage.setItem('__lithocolor__', usercolor);
 	}
 	
 	function setNewName() {
-		timeout = start;
-    	username = document.getElementById("newname").value;
+		username = document.getElementById("newname").value;
 		sessionStorage.setItem('__lithoname__', username);
     	document.getElementById("uname").innerHTML = username;
 	}
 	
+	function setName(n) {
+		username = n;
+		sessionStorage.setItem('__lithoname__', username);
+    	document.getElementById("uname").innerHTML = username;
+		document.getElementById("newname").value = username;
+	}
+	
+	function setType(t) {
+		document.getElementById("select_species").value = t;
+		if(t != "")
+		{
+			usertype = t;
+			sessionStorage.setItem('__lithotype__', usertype);
+			document.getElementById("u_type").src = "/img/r_"+usertype+".png";
+			document.getElementById("u_type2").src = "/img/r_"+usertype+".png";
+		}
+	}
+	
 	function selspecies() {
-		timeout = start;
-    	v = document.getElementById("select_species").value
+		v = document.getElementById("select_species").value
 		if(v != "")
 		{
 			usertype = v;
@@ -475,16 +450,55 @@
 		}
 	}
 	
-	function timerInterval()
-	{
-		timeout--;
-		document.getElementById("timer").innerHTML = timeout;
-		if(timeout <= 0) {
-			clearInterval(clock);
-			if(!admin){
-				alert(document.getElementById("hid-disconnect").innerHTML);
-				window.location.href = "index.html";
-				sessionStorage.clear();
+	function delMessage(id) {
+    	console.log('delete '+id);
+    	// TODO CONFIRM
+     	if(confirm("Delete message \""+id+"\""))
+	    	ws.send(JSON.stringify(
+				{
+					charset : 'utf8mb4', 
+					command: "delmessBank",
+					date: id
+				}));
+    }
+    
+	function newMessage() {
+		if(edit) {
+			console.log("EDIT "+curId);
+			messbox = document.getElementById("newmess");
+			omess = messbox.value;
+			if(omess != "" && omess != " ") {
+				ws.send(JSON.stringify(
+				{
+					charset : 'utf8mb4', 
+					command: "editmessBank",
+					name: username,
+					type: usertype,
+					date: curId,
+					content: omess,
+					color: usercolor
+				}));
+				messbox.value = "";
+				messbox.focus();
+			}
+			edit = false;
+			setNew();
+		} else {
+			messbox = document.getElementById("newmess");
+			omess = messbox.value;
+			if(omess != "" && omess != " ") {
+				ws.send(JSON.stringify(
+				{
+					charset : 'utf8mb4', 
+					command: "newmessBank",
+					name: username,
+					type: usertype,
+					date: Date.now(),
+					content: omess,
+					color: usercolor
+				}));
+				messbox.value = "";
+				messbox.focus();
 			}
 		}
 	}
@@ -494,80 +508,17 @@
     	
 		params = getParams(window.location.href);
     	
-    	if(params['user']) {
-    		console.log("USER "+params['user']);
-    		sessionStorage.setItem('__lithoname__', params['user']);
-    	}
-    	
-    	if(params['color']) {
-    		console.log("COLOR #"+params['color']);
-    		sessionStorage.setItem('__lithocolor__', '#'+params['color']);
-    	}
-    	
-    	if(params['type']) {
-    		console.log("TYPE #"+params['type']);
-    		sessionStorage.setItem('__lithotype__', params['type']);
-    	}
-    	
-    	if(params['admin']) {
-    		admin = true;
-    		document.getElementById("admin").style.display = "";
-    		document.getElementById("white-padding").style.height = "156px";
-    	} else {
-    		admin = false;
-    		document.getElementById("admin").style.display = "none";
-    		document.getElementById("white-padding").style.height = "100px";
-    	}
-    	
-    	if(params['edit']) {
-    		edit = true;
-    	} else {
-    		edit = false;
-    	}
-    	
-    	document.getElementById("editbut").checked = edit;
-    	
+    	admin = true;
     	username = sessionStorage.getItem('__lithoname__');
 		usercolor = sessionStorage.getItem('__lithocolor__');
 		usertype = sessionStorage.getItem('__lithotype__');
-	
-		switch(usertype) {
-    		case "human":
-    			document.getElementById("select_species").selectedIndex = 4;
-    			break;
-    		case "machine":
-    			document.getElementById("select_species").selectedIndex = 5;
-    			break;
-    		case "mineral":
-    			document.getElementById("select_species").selectedIndex = 1;
-    			break;
-    		case "vegetal":
-    			document.getElementById("select_species").selectedIndex = 2;
-    			break;
-    		case "animal":
-    			document.getElementById("select_species").selectedIndex = 3;
-    			break;
-    	}
+
+		document.getElementById("admin").style.display = "";
+    	document.getElementById("white-padding").style.height = "156px";
     	
-    	document.getElementById("u_type").src = "/img/r_"+usertype+".png";
-		document.getElementById("u_type2").src = "/img/r_"+usertype+".png";
-		
-    	document.getElementById("uname").innerHTML = username;
-		document.getElementById("newname").value = username;
-	
-		document.getElementById("admincolorpicker").value = usercolor;
-	
-    	console.log("USER : "+username+" "+usertype+" "+usercolor);
-		
-		connectToWS();
+    	connectToWS();
 		
 		document.getElementById("newmess").focus();
-		
-		clock = setInterval(timerInterval, 1000);
-		
-		window.addEventListener('scroll', function(e) {
-			timeout = start;
-		});
     });
 
 	</script>
@@ -581,38 +532,50 @@
 	
 	<section id="section-top" class="container-fluid content-section topbotBgColor">
 		<img id='logo3' src='/img/logo_petit.png' onclick='window.location.href = "/info.html"'>
-        <h1 id="msg-top">Lithosys Chatroom</h1>
-        <h1 id="msg-top2">Lithosys Chatroom</h1>
+        <h1 id="msg-top">Lithosys ChatBank Editor</h1>
+        <h1 id="msg-top2">Lithosys ChatBank Editor</h1>
     </section>
 
-	<section id="section-middle" class="container-fluid">
+	<section id="section-middle" class="container-fluid" style='display: none;'>
 		<div id="white-padding"><div>
     </section>
+    
+    <table id='bank'>
+		<thead>
+			<tr>
+				<th>Author</th>
+				<th>Type</th>
+				<th>Content</th>
+				<th><i class='fa fa-plus' onclick='setNew()'</th>
+			</tr>
+		</thead>
+		<tbody id='bankBody'>
+		</tbody>
+	</table>
 
+    
     <section id="section-bottom" class="container-fluid topbotBgColor">
         <h1 id="msg-bottom">
-        	<img id='u_type' class='msg-type' src='/img/r_human.png'></img>
+        	<img id='u_type' class='msg-type' src='/img/r_none.png'></img>
         	<span id='uname'></span><br/>
         	<input type='text' id='newmess' class='messbox' style='color:black;' value='' 
-        		onkeydown = "timeout = start; if (event.keyCode == 13) document.getElementById('sendbut').click()" placeholder=''></input>
-        	<i id='sendbut' class="fa fa-send" onclick='newMessage()' ></i>
+        		onkeydown = "if (event.keyCode == 13) document.getElementById('sendbut').click()" placeholder=''></input>
+        	<i id='sendbut' class="fa fa-plus" onclick='newMessage()' ></i>
         </h1>
     </section>
 
 	<div id='admin' class='topbotBgColor'>
 		<select id="select_species" name="species" onchange="selspecies()" style="color:black">
-			<option value="" data-localize="index.selSpec.0">Select your species...</option>
+			<option value="none" data-localize="index.selSpec.0">Select your species...</option>
 			<option value="mineral" data-localize="index.selSpec.1">Mineral</option>
 			<option value="vegetal" data-localize="index.selSpec.2">Vegetal</option>
 			<option value="animal" data-localize="index.selSpec.3">Animal</option>
 			<option value="human" data-localize="index.selSpec.4">Human</option>
 			<option value="machine" data-localize="index.selSpec.5">Machine</option>
 		</select>&nbsp;
-		<img id='u_type2' class='msg-type' src='/img/r_human.png'></img>
+		<img id='u_type2' class='msg-type' src='/img/r_none.png'></img>
         <input type='text' id='newname' onchange="setNewName()" placeholder=''></input>
         <input type="color" id="admincolorpicker" onchange="setNewColor()" value="#ff0000">
-		<input type="checkbox" id="editbut" name='modbut' onchange="changeEdit()" value=""></input>
-		<label for='modbut' data-localize="chat.moderate" style='font-weight: 300'>Moderate</label>
 	</div>
 
 	<span id="hid-quote" style="display: none" data-localize="chat.quote">Quote this message from </span>
