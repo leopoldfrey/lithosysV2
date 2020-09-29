@@ -8,6 +8,7 @@
     "body-parser": "latest",
     "express": "latest",
     "fs": "latest",
+    "jquery": "^3.5.1",
     "jsonfile": "latest",
     "multer": "latest",
     "randomcolor": "^0.6.2",
