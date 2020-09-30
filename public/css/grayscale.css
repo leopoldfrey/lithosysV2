@@ -589,3 +589,21 @@ option {
 	border-radius: 10px;
 	height: 20px;
 }
+
+.jconfirm {
+	padding: 20%;
+	font-family: 'Raleway' !important;
+	font-weight: 400;
+}
+
+.jconfirm-title {
+	font-size: 16px !important;
+}
+
+.jconfirm-buttons button {
+	font-size: 12px;
+}
+
+.jconfirm-bg {
+	opacity: 0.6 !important;
+}
