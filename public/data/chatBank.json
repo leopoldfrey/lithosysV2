@@ -4,7 +4,7 @@
     "date": 1600695507173,
     "content": "MIAOU",
     "type": "animal",
-    "color": "#cc9e08"
+    "color": "#bbb6a5"
   },
   {
     "name": "cacaotier",
@@ -40,5 +40,12 @@
     "date": 1601284695994,
     "content": "H20 H20 H20 !!!!",
     "color": "#49b12b"
+  },
+  {
+    "name": "quartz",
+    "type": "mineral",
+    "date": 1601388180930,
+    "content": "vous avez l'heure ?",
+    "color": "#000000"
   }
 ]

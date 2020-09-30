@@ -39,9 +39,20 @@
 	<meta name="theme-color" content="#ffffff">
 
     <script src="js/ws.min.js"></script>
+
+	<!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 		
+	<style>
+		html{
+			scroll-behavior: auto;
+		}
+
+	</style>
 	<script>
 
+	const zeroPad = (num, places) => String(num).padStart(places, '0')
+	
 	prevUser = "";
 	edit = false;
 	admin = false;
@@ -73,7 +84,7 @@
             //console.log("| WS Received message: " + e.data);
             var reply = JSON.parse(e.data);
             if(reply.command == "newmess") {
-            	displayNewMessage(reply.name, reply.type, reply.date, reply.content, reply.color, true);
+            	displayNewMessage(reply.name, reply.type, reply.date, reply.content, reply.color, true, true, false);
             } else if(reply.command == "getChat" && reply.name == username) {
             	displayChat(reply.content);
             } else if(reply.command == "refresh") {
@@ -100,6 +111,10 @@
 					name: username
 				}));
         };
+        
+        ws.onclose = function (event) {
+            console.log("- Connection to ws server CLOSED!!!");
+        };
     }
     
     function clickBubble(event) {
@@ -123,9 +138,35 @@
 	    }
     }
     
-    function displayNewMessage(name, type, date, content, color, dosotos) {
+    var now = new Date(Date.now());
+    var j = now.getDate();
+    var m = now.getMonth();
+    var y = now.getFullYear();
+    
+    var topDate = new Date(now - 86400000);
+    var scrollId = "";
+    //yesterday = new Date(Date.now() - 86400000);
+    	
+	var nMsg = 20;
+	var lastNmsg = 0;
+    
+    function displayNewMessage(name, type, date, content, color, dosotos, doscroll, first)
+    {
     	timeout = start;
     	//console.log("NEW MSG u:"+name+" d:"+date+" msg:"+content+" c:"+color);
+    	
+    	dd = new Date(date);
+    
+    	/*if(dd.getDate() != j || dd.getMonth() != m) {
+    		t = zeroPad(dd.getDate(),2)+"/"+zeroPad(dd.getMonth()+1,2);
+    		if(dd.getFullYear() != y)
+    			t += "/"+dd.getFullYear();
+    		t += " "+dd.getHours()+":"+dd.getMinutes();
+    	
+    		//return;
+    	} else {
+    		t = dd.getHours()+":"+dd.getMinutes();
+    	}*/
     	
     	d = document.createElement("div");
     	d.classList.add('msg-middle');
@@ -142,7 +183,8 @@
 	    	s.classList.add('msg-bubble-sotos');
     		s.innerHTML = content.replace(/[^a-zA-Z ]/g, "");
     	} else
-    		s.innerHTML = content;
+    		s.innerHTML = content;// + " (" + t + ")";
+
     	s.id = date;
     	s.addEventListener('click', clickBubble);
     	
@@ -184,22 +226,47 @@
     	
     	d.append(s);
     	mid = document.getElementById("chat-section-middle");
-    	mid.insertBefore(d, mid.lastChild);
+    	if(first)
+			mid.insertBefore(d, mid.firstChild);
+    	else
+			mid.insertBefore(d, mid.lastChild);
     	
-    	setTimeout(function() {
-			s.classList.remove("msg-bubble-sotos");
-			s.innerHTML = content;
-		}, 300);
-    	window.scrollTo(0, document.body.scrollHeight);
+    	if(dosotos)
+    	{
+	    	setTimeout(function() {
+				s.classList.remove("msg-bubble-sotos");
+				s.innerHTML = content;
+			}, 300);
+    	}
+    	if(doscroll)
+	    	window.scrollTo(0, document.body.scrollHeight);
     }
+    
+    var tmp_chat;
     
     function displayChat(chat) {
     	timeout = start;
-    	for(n in chat)
-    		displayNewMessage(chat[n].name, chat[n].type, chat[n].date, chat[n].content, chat[n].color, false);
+    	tmp_chat = chat;
+    	scrollId = chat[chat.length - nMsg].date;
+    	//for(n in chat)
+    	for(n = (chat.length - nMsg) ; n < chat.length ; n++)
+    		displayNewMessage(chat[n].name, chat[n].type, chat[n].date, chat[n].content, chat[n].color, false, true, false);
+    	//console.log("new scroll ID : "+scrollId);
+    }
+    
+    function refreshChat() {
+    	timeout = start;
+    	scrollId = tmp_chat[tmp_chat.length - nMsg + 1].date;
+    	for(n = (tmp_chat.length - lastNmsg - 1) ; n >= tmp_chat.length - nMsg ; n--)
+    		displayNewMessage(tmp_chat[n].name, tmp_chat[n].type, tmp_chat[n].date, tmp_chat[n].content, tmp_chat[n].color, false, false, true);
+    	window.scrollTo(0,document.getElementById(prevScrollId).offsetTop - 60);
     }
     
     function newMessage() {
+    	if(ws.readyState != WebSocket.OPEN)
+    		connectToWS();
+    	else
+    		console.log("Already connected !");
     	timeout = start;
     	messbox = document.getElementById("newmess");
 		omess = messbox.value;
@@ -358,6 +425,16 @@
 		
 		window.addEventListener('scroll', function(e) {
 			timeout = start;
+			if($(window).scrollTop() <= 0)
+			{
+				prevScrollId = scrollId;
+				lastNmsg = nMsg;
+				nMsg += 5;
+				if(nMsg > tmp_chat.length)
+					nMsg = tmp_chat.length;
+				refreshChat();
+				
+			}
 		});
     });
 
@@ -409,9 +486,6 @@
 	<span id="hid-quote" style="display: none" data-localize="chat.quote">Quote this message from </span>
 	<span id="hid-delete" style="display: none" data-localize="chat.delete">Delete this message ?</span>
 	<span id="hid-disconnect" style="display: none" data-localize="chat.disconnect">You've been disconnected</span>
-
-	<!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
     <script src="js/jquery.localize.min.js"></script>
 	<script>
