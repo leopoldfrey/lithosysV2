@@ -41,28 +41,39 @@
 	<meta name="theme-color" content="#ffffff">
 
     <script src="js/ws.min.js"></script>
-
-	
-	<!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src='js/jquery-confirm.min.js'></script>
+	<script src="js/jquery.localize.min.js"></script>
 		
 	<style>
 		html{
 			scroll-behavior: auto;
 		}
-
 	</style>
 	<script>
 
-	const zeroPad = (num, places) => String(num).padStart(places, '0')
+    var now = new Date(Date.now());
+    var j = now.getDate();
+    var m = now.getMonth();
+    var y = now.getFullYear();
+    
+    var topDate = new Date(now - 86400000);
+    var scrollId = "";
+    	
+	var nMsg = 20;
+	var lastNmsg = 0;
+    
+    var touchDevice = false;
 	
-	prevUser = "";
-	edit = false;
-	admin = false;
-	timeout = 30;
-	start = 180;
+	var prevUser = "";
+	var edit = false;
+	var admin = false;
+	var timeout = 30;
+	var start = 180;
 	var clock;
 	
+	const zeroPad = (num, places) => String(num).padStart(places, '0')
+
 	var getParams = function (url)
 	{
 		var params = {};
@@ -77,7 +88,6 @@
 		return params;
 	};
 
-		
 	function connectToWS() {
         // Connect to websocket server
         ws = new WebSocket(wsServer);
@@ -189,19 +199,7 @@
 	    	}*/
 	    }
     }
-    
-    var now = new Date(Date.now());
-    var j = now.getDate();
-    var m = now.getMonth();
-    var y = now.getFullYear();
-    
-    var topDate = new Date(now - 86400000);
-    var scrollId = "";
-    //yesterday = new Date(Date.now() - 86400000);
-    	
-	var nMsg = 20;
-	var lastNmsg = 0;
-    
+        
     function displayNewMessage(name, type, date, content, color, dosotos, doscroll, first, prevName)
     {
     	timeout = start;
@@ -303,7 +301,23 @@
     	//for(n in chat)
     	for(n = (chat.length - nMsg) ; n < chat.length ; n++)
     		displayNewMessage(chat[n].name, chat[n].type, chat[n].date, chat[n].content, chat[n].color, false, true, false, n > 0 ? chat[n-1].name : "");
-    	//console.log("new scroll ID : "+scrollId);
+    	
+    	addPullToLoad();
+    }
+    
+    function addPullToLoad() {
+    	if(tmp_chat.length == nMsg)
+    		return;
+    	d = document.createElement("div");
+    	d.id = "pulltoload";
+    	d.classList.add('msg-middle');
+    	sp = document.createElement("span");
+    	sp.classList.add('msg-bubble');
+    	sp.classList.add('msg-pull');
+    	sp.innerHTML = document.getElementById("hid-pull").innerHTML;
+    	d.append(sp);
+    	mid = document.getElementById("chat-section-middle");
+    	mid.insertBefore(d, mid.firstChild);
     }
     
     function displayChatNoScroll(chat) {
@@ -317,11 +331,19 @@
     }
     
     function refreshChat() {
+    
+    	if(document.getElementById("pulltoload"))
+	    	document.getElementById("chat-section-middle").removeChild(document.getElementById("pulltoload"));
+    	
     	timeout = start;
     	scrollId = tmp_chat[tmp_chat.length - nMsg + 1].date;
     	for(n = (tmp_chat.length - lastNmsg - 1) ; n >= tmp_chat.length - nMsg ; n--)
     		displayNewMessage(tmp_chat[n].name, tmp_chat[n].type, tmp_chat[n].date, tmp_chat[n].content, tmp_chat[n].color, false, false, true, n > 0 ? tmp_chat[n-1].name : "");
-    	window.scrollTo(0,document.getElementById(prevScrollId).offsetTop - 60);
+    	
+    	addPullToLoad();
+    	
+    	window.scrollTo(0,document.getElementById(prevScrollId).offsetTop - 120);
+    
     }
     
     function newMessage() {
@@ -417,11 +439,13 @@
 			}
 		}
 	}
-	
+		
 	/* Onload */
     document.addEventListener("DOMContentLoaded", function(event) {
     	
-		params = getParams(window.location.href);
+		$("[data-localize]").localize("strings");	
+		
+    	params = getParams(window.location.href);
     	
     	if(params['user']) {
     		console.log("USER "+params['user']);
@@ -488,43 +512,73 @@
 	
     	console.log("USER : "+username+" "+usertype+" "+usercolor);
 		
-		connectToWS();
 		
+		//document.getElementById("newmess").value = wsServer;
 		document.getElementById("newmess").focus();
 		
 		clock = setInterval(timerInterval, 1000);
 		
-		window.addEventListener('scroll', function(e) {
-			timeout = start;
-			if($(window).scrollTop() <= 0)
-			{
-				prevScrollId = scrollId;
-				lastNmsg = nMsg;
-				nMsg += 5;
-				if(nMsg > tmp_chat.length)
-					nMsg = tmp_chat.length;
-				refreshChat();
-				
-			}
+		document.addEventListener('scroll', function(e) {
+			if(!touchDevice)
+				loadMore();
+		});
+		document.addEventListener('touchstart', function(e) {
+			touchDevice = true;
+		});
+		document.addEventListener('touchmove', function(e) {
+			touchDevice = true;
+		});
+		document.addEventListener('touchend', function(e) {
+			touchDevice = true;
+			loadMore();
 		});
 		
-		/*$.alert({
-        			title: 'SUPER !!!',
-        			columnClass: 'dialog',
-					content: "",
-					onDestroy: function () { console.log('after alert'); }
-    			});	*/
+		setTimeout(function() {
+    		connectToWS();
+		},200);
     });
+    
+    function loadMore() {
+    	timeout = start;
+    	if((!touchDevice && $(window).scrollTop() <= 0) || (touchDevice && $(window).scrollTop() < 80))
+		{
+			prevScrollId = scrollId;
+			lastNmsg = nMsg;
+			nMsg += 5;
+			if(nMsg > tmp_chat.length)
+				nMsg = tmp_chat.length;
+			refreshChat();
+			sleep(20);
+			/*ws.send(JSON.stringify(
+				{
+					charset : 'utf8mb4', 
+					command: touchDevice ? "loadmore_iphone" : "loadmore_screen",
+					date: Date.now()
+				}));*/
+		}
+    }
+
+	function sleep(milliseconds) {
+  		const date = Date.now();
+  		let currentDate = null;
+		do {
+    		currentDate = Date.now();
+		} while (currentDate - date < milliseconds);
+	}
 
 	</script>
 	
 </head>
 
 	<body><!-- id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style=""-->
-	
 	<div id=timer>
 	</div>
 	
+	<span id="hid-quote" style="display: none" data-localize="chat.quote">Quote this message from </span>
+	<span id="hid-delete" style="display: none" data-localize="chat.delete">Delete this message ?</span>
+	<span id="hid-disconnect" style="display: none" data-localize="chat.disconnect">You've been disconnected</span>
+	<span id="hid-pull" style="display: none" data-localize="chat.pull">Pull to load more</span>
+
 	<section id="chat-section-top" class="container-fluid content-section topbotBgColor">
 		<img id='logo3' alt='G5 logo' src='/img/logo_petit.png' onclick='window.location.href = "/info.html"'>
         <h1 id="chat-msg-top">Lithosys Chatroom</h1>
@@ -560,16 +614,6 @@
 		<input type="checkbox" id="editbut" name='modbut' onchange="changeEdit()" value=""></input>
 		<label for='modbut' data-localize="chat.moderate" style='font-weight: 300'>Moderate</label>
 	</div>
-
-	<span id="hid-quote" style="display: none" data-localize="chat.quote">Quote this message from </span>
-	<span id="hid-delete" style="display: none" data-localize="chat.delete">Delete this message ?</span>
-	<span id="hid-disconnect" style="display: none" data-localize="chat.disconnect">You've been disconnected</span>
-
-    <script src='js/jquery-confirm.min.js'></script>
-	<script src="js/jquery.localize.min.js"></script>
-	<script>
-		$("[data-localize]").localize("strings");
-	</script>
 
 	</body>
 </html>

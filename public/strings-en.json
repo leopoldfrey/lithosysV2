@@ -46,6 +46,7 @@
 		"moderate" : "Moderate",
 		"quote" : "Quote this message from ",
 		"delete" : "Delete this message ?",
-		"disconnect" : "You've been disconnected"
+		"disconnect" : "You've been disconnected",
+		"pull" : "Pull to load more"
 	}
 }

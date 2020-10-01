@@ -46,6 +46,7 @@
 		"moderate" : "Modération",
 		"quote" : "Citer ce message de ",
 		"delete" : "Supprimer ce message ?",
-		"disconnect" : "Vous êtes déconnectés"
+		"disconnect" : "Vous êtes déconnectés",
+		"pull" : "Tirer pour charger des messages plus anciens"
 	}
 }

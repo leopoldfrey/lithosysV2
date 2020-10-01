@@ -538,6 +538,17 @@ option {
 	margin: -2px 4px 0px 0px;
 }
 
+.msg-pull {
+	background-color: white;
+	font-style: italic;
+	font-size: 10px;
+	color: gray;
+	width: 100%;
+	max-width: 100%;
+	text-align: center;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 0px 0px;
+}
+
 #admin {
 	position: fixed;
 	padding: 12px;
