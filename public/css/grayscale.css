@@ -391,8 +391,13 @@ option {
 	h1 {
 		font-size: 16px;
 	}
+	
 	#msg-top2 {
   		font-size: 20px;
+	}
+	#chat-msg-top2 {
+  		font-size: 17px !important;
+		top: -9px !important;
 	}
 	#bigTitle {
 		font-size: 40px;
@@ -410,6 +415,11 @@ option {
 	#logo3 {
 		display: none;
 	}
+	#chat-msg-top2 {
+  		font-size: 15px !important;
+		top: -8px !important;
+	}
+	
 }
 
 #timer {
@@ -498,9 +508,13 @@ option {
 	font-family: 'SOTOS_OCHANDO';
 	color: white;
 	z-index: -1;
-	position: absolute;
-	top: 10px;
-	font-size: 35px;
+	/*position: absolute;
+	top: 10px;*/
+	font-size: 25px;
+	position: relative;
+	top: -15px;
+	text-align: center;
+	height: 0px;
 	text-shadow: 2px 2px 2px rgba(0,0,0,0.21);
 }
 
