@@ -350,21 +350,33 @@ option {
 	background-color: #181818;
 }
 
+#bigTitle {
+	font-weight: 600;
+	font-size: 90px;
+
+}
 @media (width <= 1000px) {
 	#logo1 {
-		width: 150px;
+		width: 130px;
 	}
 	#logo2 {
-		height: 45px;
+		height: 35px;
 	}
 }
 
 @media (width <= 500px) {
 	#logo1 {
-		width: 100px;
+		width: 80px;
 	}
 	#logo2 {
-		height: 30px;
+		height: 20px;
+	}
+	#bigTitle {
+		font-size: 60px;
+	}
+	#titleSotos {
+		font-size: 60px;
+		top: -70px;
 	}
 }
 
@@ -374,6 +386,14 @@ option {
 	}
 	#msg-top2 {
   		font-size: 20px;
+	}
+	#bigTitle {
+		font-size: 40px;
+	}
+	#titleSotos {
+		font-size: 40px;
+		top: -60px;
+	
 	}
 }
 
