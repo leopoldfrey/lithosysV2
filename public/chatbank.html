@@ -58,8 +58,9 @@
             //console.log("| WS Received message: " + e.data);
             var reply = JSON.parse(e.data);
             if(reply.command == "getChatBank") {
+            	//console.log("GETCHATBANK");
             	displayChatBank(reply.content);
-            	setNew();
+            	//setNew();
             }
         };
 
@@ -110,6 +111,7 @@
     }
     
     function setNew() {
+    	console.log("SET NEW");	
     	document.getElementById("newmess").value = "";
 		document.getElementById("sendbut").classList.add("icon-plus");
     	document.getElementById("sendbut").classList.remove("icon-refresh");
@@ -247,7 +249,7 @@
 				messbox.focus();
 			}
 			edit = false;
-			setNew();
+			//setNew();
 		} else {
 			messbox = document.getElementById("newmess");
 			omess = messbox.value;
