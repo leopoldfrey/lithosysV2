@@ -360,19 +360,21 @@ option {
 }
 @media (width <= 1000px) {
 	#logo1 {
-		width: 110px;
+		/*width: 110px;*/
+		width: 70px;
 	}
 	#logo2 {
-		height: 25px;
+		/*height: 25px;*/
+		height: 18px;
 	}
 }
 
 @media (width <= 500px) {
 	#logo1 {
-		width: 75px;
+		width: 58px;
 	}
 	#logo2 {
-		height: 17px;
+		height: 13px;
 	}
 	#bigTitle {
 		font-size: 60px;
