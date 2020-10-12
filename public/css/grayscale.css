@@ -288,7 +288,7 @@ option {
 	
 #logo1 {
 	position: absolute;
-	width: 200px;
+	width: 155px;
 	/*top: 0px;*/
 	bottom: 0px;
 	left: 10px;
@@ -299,7 +299,7 @@ option {
 #logo2 {
 	position: absolute;
 	bottom: 20px;
-	height: 60px;
+	height: 45px;
 	right: 20px;
 	transition-duration: 500ms;
 	filter: drop-shadow(2px 2px 2px #000);
@@ -357,19 +357,19 @@ option {
 }
 @media (width <= 1000px) {
 	#logo1 {
-		width: 130px;
+		width: 110px;
 	}
 	#logo2 {
-		height: 35px;
+		height: 25px;
 	}
 }
 
 @media (width <= 500px) {
 	#logo1 {
-		width: 80px;
+		width: 75px;
 	}
 	#logo2 {
-		height: 20px;
+		height: 17px;
 	}
 	#bigTitle {
 		font-size: 60px;
