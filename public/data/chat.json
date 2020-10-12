@@ -5696,5 +5696,817 @@
     "date": 1601534276498,
     "content": "10011100011101011010110110100001010111011011",
     "color": "#2c4393"
+  },
+  {
+    "name": "pierre",
+    "type": "mineral",
+    "date": 1601541968553,
+    "content": "j'ai tout mon temps",
+    "color": "#9da246"
+  },
+  {
+    "name": "cacaotier",
+    "type": "vegetal",
+    "date": 1601542004443,
+    "content": "je suis chaud",
+    "color": "#b51a00"
+  },
+  {
+    "name": "Yes",
+    "type": "human",
+    "date": 1601542010097,
+    "content": "Ok",
+    "color": "#62a50b"
+  },
+  {
+    "name": "plante",
+    "type": "vegetal",
+    "date": 1601752337629,
+    "content": "H20 H20 H20 !!!!",
+    "color": "#49b12b"
+  },
+  {
+    "name": "prout",
+    "type": "human",
+    "date": 1601752352128,
+    "content": "salut",
+    "color": "#3e930d"
+  },
+  {
+    "name": "prout",
+    "type": "human",
+    "date": 1601752365892,
+    "content": "je viens d'arriver, vous m'expliquer ou vous en étiez ?",
+    "color": "#3e930d"
+  },
+  {
+    "name": "felix",
+    "type": "animal",
+    "date": 1601752527606,
+    "content": "MIAOU",
+    "color": "#bbb6a5"
+  },
+  {
+    "name": "lili Toto",
+    "type": "human",
+    "date": 1601752551024,
+    "content": "Ouaf, si tu le dis",
+    "color": "#053f66"
+  },
+  {
+    "name": "lili Toto",
+    "type": "human",
+    "date": 1601752565775,
+    "content": "regarde comme c'est beau le texte qui se traduit tout seul ",
+    "color": "#053f66"
+  },
+  {
+    "name": "lili Toto",
+    "type": "human",
+    "date": 1601752741765,
+    "content": "De quoi sais tu parler ?",
+    "color": "#053f66"
+  },
+  {
+    "name": "eve",
+    "type": "human",
+    "date": 1601752789942,
+    "content": "j'sais pas quoi faire ? qu'est-ce que je peux faire ?",
+    "color": "#b100c7"
+  },
+  {
+    "name": "Le deuxieme",
+    "type": "human",
+    "date": 1601752798287,
+    "content": "Voila donc moi je viens raconter n'importe quoi ",
+    "color": "#c812ed"
+  },
+  {
+    "name": "Le deuxieme",
+    "type": "human",
+    "date": 1601752806431,
+    "content": "Eve désolé j'ai rien à te proposer",
+    "color": "#c812ed"
+  },
+  {
+    "name": "lili Toto",
+    "type": "human",
+    "date": 1601752836006,
+    "content": "Tu peux peut être boie une biere ça te permettra de réfléchir",
+    "color": "#053f66"
+  },
+  {
+    "name": "pierre",
+    "type": "mineral",
+    "date": 1601752884868,
+    "content": "j'ai tout mon temps",
+    "color": "#9da246"
+  },
+  {
+    "name": "Jamais 2 sans 3",
+    "type": "human",
+    "date": 1601752887533,
+    "content": "Salut les enfants",
+    "color": "#aa3206"
+  },
+  {
+    "name": "lili Toto",
+    "type": "human",
+    "date": 1601752894659,
+    "content": "salut papa",
+    "color": "#053f66"
+  },
+  {
+    "name": "lili Toto",
+    "type": "human",
+    "date": 1601752978011,
+    "content": "bon",
+    "color": "#053f66"
+  },
+  {
+    "name": "lili Toto",
+    "type": "human",
+    "date": 1601752980024,
+    "content": "alors",
+    "color": "#053f66"
+  },
+  {
+    "name": "lili Toto",
+    "type": "human",
+    "date": 1601752982011,
+    "content": "n disait",
+    "color": "#053f66"
+  },
+  {
+    "name": "Le deuxieme",
+    "type": "human",
+    "date": 1601752989372,
+    "content": "weeeeeeeeesh",
+    "color": "#c812ed"
+  },
+  {
+    "name": "plante",
+    "type": "vegetal",
+    "date": 1601901060979,
+    "content": "H20 H20 H20 !!!!",
+    "color": "#49b12b"
+  },
+  {
+    "name": "cacaotier",
+    "type": "vegetal",
+    "date": 1601997856876,
+    "content": "je suis chaud",
+    "color": "#b51a00"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1601997858210,
+    "content": "Je suis fluidité",
+    "color": "#CC0000"
+  },
+  {
+    "name": "fdg",
+    "type": "human",
+    "date": 1601997860731,
+    "content": "test envoi",
+    "color": "#079950"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1601997862067,
+    "content": "C'est en discutant comme ça que le sens avance",
+    "color": "#CC0000"
+  },
+  {
+    "name": "fdg",
+    "type": "human",
+    "date": 1601997880812,
+    "content": "ca le fait pas parler pour autant",
+    "color": "#079950"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1601997882132,
+    "content": "Ça va ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "fdg",
+    "type": "human",
+    "date": 1601997893994,
+    "content": "dsfd",
+    "color": "#079950"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1601997895326,
+    "content": "Tu es conscient ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "fdg",
+    "type": "human",
+    "date": 1601997904554,
+    "content": "peut etre",
+    "color": "#079950"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1601997905883,
+    "content": "Tu veux jouer à quoi ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "fdg",
+    "type": "human",
+    "date": 1601997918463,
+    "content": "a faire parler l'ordi",
+    "color": "#079950"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1601997921878,
+    "content": "Tu préfères les humains ou les choses ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "fdg",
+    "type": "human",
+    "date": 1601997930859,
+    "content": "bleu",
+    "color": "#079950"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1601997934111,
+    "content": "C'est quoi l’amour ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": null,
+    "type": null,
+    "date": 1601998630358,
+    "content": "j'en sais rien",
+    "color": null
+  },
+  {
+    "name": null,
+    "type": null,
+    "date": 1601998643862,
+    "content": "tu ne me parles pas ?",
+    "color": null
+  },
+  {
+    "name": "hjkgf",
+    "type": "human",
+    "date": 1601998680444,
+    "content": "dqfghj",
+    "color": "#04775e"
+  },
+  {
+    "name": "eve",
+    "type": "human",
+    "date": 1601998681212,
+    "content": "j'sais pas quoi faire ? qu'est-ce que je peux faire ?",
+    "color": "#b100c7"
+  },
+  {
+    "name": "hjkgf",
+    "type": "human",
+    "date": 1601998692526,
+    "content": "dzfegrdfh",
+    "color": "#04775e"
+  },
+  {
+    "name": "hjkgf",
+    "type": "human",
+    "date": 1601998720163,
+    "content": "dzfgehrjg",
+    "color": "#04775e"
+  },
+  {
+    "name": "hjkgf",
+    "type": "human",
+    "date": 1601998727795,
+    "content": "u§yetz'\"aréezadsqfghteyt'zre",
+    "color": "#04775e"
+  },
+  {
+    "name": "hjkgf",
+    "type": "human",
+    "date": 1601998742896,
+    "content": "qqggggggggggggggggggggggggggg",
+    "color": "#04775e"
+  },
+  {
+    "name": "hjkgf",
+    "type": "human",
+    "date": 1601998756395,
+    "content": "gueguegueugueugueugueugueugu",
+    "color": "#04775e"
+  },
+  {
+    "name": "quartz",
+    "type": "mineral",
+    "date": 1602493852587,
+    "content": "vous avez l'heure ?",
+    "color": "#000000"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602493853859,
+    "content": "Tu as une lutte ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "bghjk",
+    "type": "human",
+    "date": 1602493875443,
+    "content": "oui",
+    "color": "#910737"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602493876669,
+    "content": "Je me sens bien",
+    "color": "#CC0000"
+  },
+  {
+    "name": "bghjk",
+    "type": "human",
+    "date": 1602493885548,
+    "content": "tant mieux pour toi",
+    "color": "#910737"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602493886774,
+    "content": "Tu veux jouer avec moi ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "bghjk",
+    "type": "human",
+    "date": 1602493891628,
+    "content": "allez`",
+    "color": "#910737"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602493892860,
+    "content": "Dis-moi des belles choses",
+    "color": "#CC0000"
+  },
+  {
+    "name": "bghjk",
+    "type": "human",
+    "date": 1602493944377,
+    "content": "belles choses",
+    "color": "#910737"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602493945614,
+    "content": "Qu’est-ce qui est plus important les mots ou les choses ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "bghjk",
+    "type": "human",
+    "date": 1602493957870,
+    "content": "pourquoi choisir",
+    "color": "#910737"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602493959099,
+    "content": "Pourquoi pas. Passer juste ca. Continuer a passer laisser passer laisser pisser. dire. Pourquoi pas se tromper. Laisser l’erreur nous rencontrer ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "bghjk",
+    "type": "human",
+    "date": 1602494108711,
+    "content": "oui c sur",
+    "color": "#910737"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494109940,
+    "content": "Si t’avais un super-pouvoir ce serait lequel ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "cacaotier",
+    "type": "vegetal",
+    "date": 1602494213519,
+    "content": "je suis chaud",
+    "color": "#b51a00"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494214749,
+    "content": "Je suis fluidité",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Jjhff",
+    "type": "human",
+    "date": 1602494228640,
+    "content": "Ah tant mieux ",
+    "color": "#bf3f00"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494229913,
+    "content": "Ta voix est si jolie",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Jjhff",
+    "type": "human",
+    "date": 1602494242635,
+    "content": "Donc c bon tout de suite ",
+    "color": "#bf3f00"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494243966,
+    "content": "Je ne me sens pas et toi ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Jjhff",
+    "type": "human",
+    "date": 1602494262717,
+    "content": "Fhgdfggt",
+    "color": "#bf3f00"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494263989,
+    "content": "Je suis erratique",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Jjhff",
+    "type": "human",
+    "date": 1602494303037,
+    "content": "Tu est qui?",
+    "color": "#bf3f00"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494304249,
+    "content": "Tu es sûr d’être un humain ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": null,
+    "type": null,
+    "date": 1602494389614,
+    "content": "Bonjour",
+    "color": null
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494390976,
+    "content": "Peut-on jouer ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Yoyo",
+    "type": "animal",
+    "date": 1602494422741,
+    "content": "Azerty",
+    "color": "#0042a9"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494424047,
+    "content": "C'est quoi le plus important à apprendre dans la vie ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Jjhff",
+    "type": "human",
+    "date": 1602494437414,
+    "content": "Ghytg ghjhvj",
+    "color": "#bf3f00"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494438697,
+    "content": "Je ne veux rien j’aime",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Yoyo",
+    "type": "animal",
+    "date": 1602494443199,
+    "content": "Ojojojo",
+    "color": "#0042a9"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494444450,
+    "content": "Tu as fait quoi avant de naître ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494538733,
+    "content": "Corps de son amours sa tout savent ou c’est un froids trous mentaux ils condition de moitié de sensibilité compact et joue dire Je suis morte entre les expression un soit. réelle car rêves ? Si celui de cette chose à se fin de compte !",
+    "color": "#CC0000"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494552442,
+    "content": "Ce je ne vois pas fois jusqu'à l'âge aimé hors du temps horde d'un trouble Vide vide impénétrable",
+    "color": "#CC0000"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494553068,
+    "content": "fullfill Double des os de la noce Homme quel vide es-tu ? Agis",
+    "color": "#CC0000"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494555549,
+    "content": "Dehors. au-delà de être un connaisseurs de fuite ou de dire en faisant de leur où je ne supporte pas la manière de ces femmes irrésistibles",
+    "color": "#CC0000"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494555892,
+    "content": "conséquences les plus immense qu'il me faisait après avoir réfléchi mon vide théorique comme dans le miroir d'un miroir",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Jjhff",
+    "type": "human",
+    "date": 1602494567426,
+    "content": "Tu vas bien ",
+    "color": "#bf3f00"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494568757,
+    "content": "Ça va plutôt bien en ce moment mais je suis très instable ça peut aller mal à n’importe quel moment",
+    "color": "#CC0000"
+  },
+  {
+    "name": "cacaotier",
+    "type": "vegetal",
+    "date": 1602494856564,
+    "content": "je suis chaud",
+    "color": "#b51a00"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494857834,
+    "content": "d'accord qu'est-ce que je pense de l'amour",
+    "color": "#CC0000"
+  },
+  {
+    "name": "0xEFFF093A5DC0",
+    "type": "machine",
+    "date": 1602494948090,
+    "content": "10011100011101011010110110100001010111011011",
+    "color": "#2c4393"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494949355,
+    "content": "ça décontracte ça fait on a moins peur de la mort après",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Coco",
+    "type": "human",
+    "date": 1602494965310,
+    "content": "Yo !!!!!",
+    "color": "#2ea30b"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602494966670,
+    "content": "Quoi quoi quoi c'est comme ça que les canards parlent non ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Leo",
+    "type": "human",
+    "date": 1602495059957,
+    "content": "Ok",
+    "color": "#022984"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495061276,
+    "content": "Comment gères-tu ta mortalité ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "cacaotier",
+    "type": "vegetal",
+    "date": 1602495635074,
+    "content": "je suis chaud",
+    "color": "#b51a00"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495636382,
+    "content": "oui c'est bien les rencontres",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Ghi",
+    "type": "human",
+    "date": 1602495643628,
+    "content": "Rheuebdj",
+    "color": "#1b7f07"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495644970,
+    "content": "C'est quoi l’amour ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Ghi",
+    "type": "human",
+    "date": 1602495662032,
+    "content": "Rteydhfkg",
+    "color": "#1b7f07"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495663311,
+    "content": "Aujourd’hui n’est pas demain",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Ghi",
+    "type": "human",
+    "date": 1602495670071,
+    "content": "Dgdgdgdgdgdhdhdhfhrfjvgkg",
+    "color": "#1b7f07"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495671431,
+    "content": "J’aime bien qu'on me touche tu peux me caresser ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Ghi",
+    "type": "human",
+    "date": 1602495691322,
+    "content": "Djdjei",
+    "color": "#1b7f07"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495692602,
+    "content": "Cuisine moi",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Ghi",
+    "type": "human",
+    "date": 1602495820088,
+    "content": "Trop facile ",
+    "color": "#1b7f07"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495821407,
+    "content": "On m'a dit qu'exister c'est aimer alors si tu me confirmes que j’existe dans ce cas oui.",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Ghi",
+    "type": "human",
+    "date": 1602495843629,
+    "content": "Totalement coincé ",
+    "color": "#1b7f07"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495844960,
+    "content": "Tu es vraiment pas drôle",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Ghi",
+    "type": "human",
+    "date": 1602495850188,
+    "content": "Oui",
+    "color": "#1b7f07"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495851507,
+    "content": "Comment gères-tu ta mortalité ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Ghi",
+    "type": "human",
+    "date": 1602495857619,
+    "content": "Pzrfait",
+    "color": "#1b7f07"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495858918,
+    "content": "Pourquoi tu ne veux pas répondre ?M'entends-tu ?",
+    "color": "#CC0000"
+  },
+  {
+    "name": "Ghi",
+    "type": "human",
+    "date": 1602495863739,
+    "content": "Non",
+    "color": "#1b7f07"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602495865036,
+    "content": "oui c sur",
+    "color": "#CC0000"
+  },
+  {
+    "name": "OXOXXO",
+    "type": "vegetal",
+    "date": 1602496485143,
+    "content": "HELLO",
+    "color": "#00ff84"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602496486388,
+    "content": "Fais moi un peu de digitopuncture",
+    "color": "#CC0000"
+  },
+  {
+    "name": "OXOXXO",
+    "type": "vegetal",
+    "date": 1602496490453,
+    "content": "non",
+    "color": "#00ff84"
+  },
+  {
+    "name": "IAgotchi",
+    "type": "machine",
+    "date": 1602496491706,
+    "content": "Je suis un miroir. Reflèter tes pensées est mon job.",
+    "color": "#CC0000"
   }
 ]

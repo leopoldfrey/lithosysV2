@@ -103,9 +103,9 @@
             } else if(reply.command == "refresh") {
             	document.getElementById("chat-section-middle").innerHTML = '<div id="white-padding"><div>';
             	if(admin)
-            		document.getElementById("white-padding").style.height = "156px";
+            		document.getElementById("white-padding").style.height = "230px";//"156px";
     			else
-    				document.getElementById("white-padding").style.height = "100px";
+    				document.getElementById("white-padding").style.height = "160px";//"100px";
     			displayChatNoScroll(reply.content);
             }
         };
@@ -465,11 +465,11 @@
     	if(params['admin']) {
     		admin = true;
     		document.getElementById("admin").style.display = "";
-    		document.getElementById("white-padding").style.height = "156px";
+    		document.getElementById("white-padding").style.height = "230px";//"156px";
     	} else {
     		admin = false;
     		document.getElementById("admin").style.display = "none";
-    		document.getElementById("white-padding").style.height = "100px";
+    		document.getElementById("white-padding").style.height = "160px";//"100px";
     	}
     	
     	if(params['edit']) {
