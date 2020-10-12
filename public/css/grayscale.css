@@ -510,7 +510,8 @@ option {
 }
 
 .topbotBgColor {
-	background-color: #d6e2e3;
+	/*background-color: #d6e2e3;*/
+	background-color: #dbdbdb;
 }
 
 #white-padding {
