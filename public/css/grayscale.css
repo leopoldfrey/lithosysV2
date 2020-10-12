@@ -358,7 +358,7 @@ option {
 	font-size: 90px;
 
 }
-@media (width <= 1000px) {
+@media (max-width: 1000px) {
 	#logo1 {
 		/*width: 110px;*/
 		width: 70px;
@@ -369,7 +369,7 @@ option {
 	}
 }
 
-@media (width <= 500px) {
+@media (max-width: 500px) {
 	#logo1 {
 		width: 58px;
 	}
@@ -387,7 +387,7 @@ option {
 	}
 }
 
-@media (width <= 400px) {
+@media (max-width: 400px) {
 	h1 {
 		font-size: 16px;
 	}
@@ -406,7 +406,7 @@ option {
 	}
 }
 
-@media (width <= 300px) {
+@media (max-width: 300px) {
 	#logo3 {
 		display: none;
 	}
@@ -588,6 +588,24 @@ option {
 	max-width: 100%;
 	text-align: center;
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 0px 0px;
+}
+
+#infobut {
+	position: absolute;
+	right: 12px;
+	top: 12px;
+	font-size: 20px;
+	cursor: pointer;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+	
+}
+#infobut2 {
+	position: absolute;
+	right: 12px;
+	top: 12px;
+	font-size: 20px;
+	cursor: pointer;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
 }
 
 #admin {
