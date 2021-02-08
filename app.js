@@ -59,6 +59,14 @@ app.get('/info.html',function(req,res){
       res.sendFile(__dirname + "/public/info.html");
 });
 
+app.get('/info-es.html',function(req,res){
+      res.sendFile(__dirname + "/public/info-es.html");
+});
+
+app.get('/info-en.html',function(req,res){
+      res.sendFile(__dirname + "/public/info-en.html");
+});
+
 /*----------- Static Files -----------*/
 app.use('/vendor', express.static('public/vendor'));
 app.use('/css', express.static('public/css'));
@@ -104,6 +112,9 @@ app.use('/strings-fr.json', express.static('public/strings-fr.json'));
 app.use('/strings-fr-FR.json', express.static('public/strings-fr.json'));
 app.use('/strings-en.json', express.static('public/strings-en.json'));
 app.use('/strings-en-US.json', express.static('public/strings-en.json'));
+app.use('/strings-es.json', express.static('public/strings-es.json'));
+app.use('/strings-ca.json', express.static('public/strings-es.json'));
+app.use('/strings-es-es.json', express.static('public/strings-es.json'));
 
 
 /*----------- Download/Upload votes -----------*/

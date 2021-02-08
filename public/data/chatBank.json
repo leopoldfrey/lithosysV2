@@ -7,32 +7,11 @@
     "color": "#bbb6a5"
   },
   {
-    "name": "cacaotier",
-    "date": 1600695618673,
-    "content": "je suis chaud",
-    "type": "vegetal",
-    "color": "#b51a00"
-  },
-  {
-    "name": "pierre",
-    "date": 1600695632904,
-    "content": "j'ai tout mon temps",
-    "type": "mineral",
-    "color": "#9da246"
-  },
-  {
     "name": "0xEFFF093A5DC0",
     "date": 1600695643366,
     "content": "10011100011101011010110110100001010111011011",
     "type": "machine",
     "color": "#2c4393"
-  },
-  {
-    "name": "eve",
-    "date": 1600695653814,
-    "content": "j'sais pas quoi faire ? qu'est-ce que je peux faire ?",
-    "type": "human",
-    "color": "#b100c7"
   },
   {
     "name": "plante",
@@ -45,7 +24,98 @@
     "name": "quartz",
     "type": "mineral",
     "date": 1601388180930,
-    "content": "vous avez l'heure ?",
+    "content": "Cristallisation apparente",
     "color": "#000000"
+  },
+  {
+    "name": "orchidée",
+    "type": "vegetal",
+    "date": 1610612548523,
+    "content": "beauté please !",
+    "color": "#00ff33"
+  },
+  {
+    "name": "Rocio",
+    "type": "human",
+    "date": 1610613501361,
+    "content": "Une terre en commun, c'est déjà beaucoup en commun, nan?",
+    "color": "#716f6f"
+  },
+  {
+    "name": "Smartphone Galaxy",
+    "type": "machine",
+    "date": 1610613545744,
+    "content": "Look at me ! ",
+    "color": "#ebeaea"
+  },
+  {
+    "name": "Vulcano",
+    "type": "mineral",
+    "date": 1610614122261,
+    "content": "Magma incandescent des entrailles du monde",
+    "color": "#7a0505"
+  },
+  {
+    "name": "GRILLEPAIN",
+    "type": "machine",
+    "date": 1610615632987,
+    "content": "Je ne suis pas sure, que une politique basée sur les sensibilités des sujets fait vraiment du sens, je suis pour une politique d'usages",
+    "color": "#ff00a2"
+  },
+  {
+    "name": "THEBADWEEDS",
+    "type": "vegetal",
+    "date": 1610615680354,
+    "content": "We are the BADWEEDS , we are everywhere.... ",
+    "color": "#097742"
+  },
+  {
+    "name": "ortie",
+    "type": "vegetal",
+    "date": 1610615718141,
+    "content": "Comment peux-je faire pour faire partie du groupe BW? ",
+    "color": "#1ab76b"
+  },
+  {
+    "name": "Lapin Sauvage",
+    "type": "animal",
+    "date": 1610616006089,
+    "content": "Salut tout le monde, je voudrais répondre à la proposition de GrillePain, je crois que une politique qui prends en compte l'existence, la sensibilité et interdépendance de chaque un des entitées agissantes sur nôtre réel serait enfin une  vraie politique du sens..",
+    "color": "#baa5f3"
+  },
+  {
+    "name": "magnetite",
+    "type": "mineral",
+    "date": 1610616059382,
+    "content": "I just wanna vibrate with all of you guys! ",
+    "color": "#070709"
+  },
+  {
+    "name": "Sanglier",
+    "type": "animal",
+    "date": 1610616156655,
+    "content": "Quelqu'un peut dire au lapin Sauvage : - Ferme-la? ",
+    "color": "#9362d0"
+  },
+  {
+    "name": "Anonyme",
+    "type": "human",
+    "date": 1610616339846,
+    "content": "Je voudrais répondre au propos violent et complètement irrespectueux du Sanglier, Lapin Sauvage a très bien argumenté sa proposition, si vous n'estes pas d'accord avec , je vous invite a formuler clairement vos propositions a bien qu'elle puissent être prises en compte par le comité du IOFLE (Inter-espècies Organisation for the Future of life on Earth. ",
+    "color": "#f5b55c"
+  },
+  {
+    "name": "COCO",
+    "type": "machine",
+    "date": 1610616386466,
+    "content": "Je veux faire partie du IOFLE, comment fait-on? ",
+    "color": "#00ffcc"
+  },
+  {
+    "name": "Roche vive",
+    "type": "mineral",
+    "date": 1610616588321,
+    "content": "Juste pour info, IOFLE = The interespecies Organisation for the Future of Life on Earth",
+    "color": "#594308"
   }
 ]
