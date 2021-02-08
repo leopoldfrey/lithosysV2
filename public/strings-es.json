@@ -1,0 +1,53 @@
+{
+	"index": {
+	"welcome" : "Bienvenid@, desea acceder al chat?", 
+	"id-requ" : "Identificación requerida",
+		"selSpec" : {
+			"0" : "Seleccione su especie...", 
+			"1" : "Mineral", 
+			"2" : "Vegetal", 
+			"3" : "Animal", 
+			"4" : "Humano", 
+			"5" : "Maquina" 
+		}
+	},
+	"homebut" : "Volver al inicio", 
+	"access" : {
+	"denied" : "Acceso denegado",
+	"granted" : "Acceso autorizado" 
+	},
+	
+	"warning1" : "Atención !<br/>Se ha detectado un dedo humano en el proceso de identificación.<br/><br/>Una persona declarada culpable de robo de identidad puede ser condenada a cinco años de prisión y a una multa máxima de 75.000 euros.",
+	"warning2" : "Atención !<br/>Una persona declarada culpable de robo de identidad puede ser condenada a cinco años de prisión y a una multa máxima de 75.000 euros.",
+	"vegetal" : {
+		"title1" : "Identificación química",
+		"title2" : "Análisis de la firma química",
+		"message1": "Coloque su firma química en la pantalla"
+	},
+	"animal" : {
+		"title1" : "Identificación",
+		"title2" : "Análisis de su selfie",
+		"message1": "Tómese un selfie"
+	},
+	"machine" : {
+		"title1" : "Identificación Binaria 1",
+		"title2" : "Identificación Binaria 2",
+		"title3" : "Identificación Binaria 3",
+		"checkSum": "Verificación"
+	},
+	"human" : {
+		"title1" : "Identificación",
+		"title2" : "Análisis de su selfie",
+		"title3" : "Nombre de usuario",
+		"message1": "Tómese un selfie",
+		"message2": "Entrar",
+		"message3": "Bienvenid@ al chat"
+	},
+	"chat": {
+		"moderate" : "Moderación",
+		"quote" : "Citar el mensaje de ",
+		"delete" : "Borrar el mensaje ?",
+		"disconnect" : "Está desconectad@",
+		"pull" : "Tirar para cargar los mensajes precedentes"
+	}
+}
